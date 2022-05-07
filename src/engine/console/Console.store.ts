@@ -41,7 +41,7 @@ export function useConsoleStore() {
   }
 
   function setNextTextItem(log: SceneLog, item: SceneText) {
-    store.active.value?.textItems.push({ id: item.id, content: "" });
+    store.active.value?.textItems.push({ ...item, content: "", });
     store.patch({ activeItemId: item.id, characterIndex: -1 });
     onNextCharacter(log, item);
   }
@@ -55,7 +55,7 @@ export function useConsoleStore() {
     const activeItem = store.active.value?.textItems.find(i => i.id === store.$state.activeItemId);
     activeItem!.content += nextChar;
     store.characterIndex.value ++;
-    await delay(40);
+    await delay(30);
     onNextCharacter(log, item);
   }
 

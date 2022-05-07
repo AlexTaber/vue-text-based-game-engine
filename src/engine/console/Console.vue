@@ -4,7 +4,9 @@
   <div class="console">
     <div class="content">
       <div v-for="log in logs" :key="log.id" class="log">
-        <span v-for="item in log.textItems">
+        <span v-for="item in log.textItems" :style="{
+          color: getColor(item.style.color),
+        }">
           {{ item.content }}
         </span>
       </div>
@@ -13,9 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import { useTheme } from '../theme';
 import { useConsoleStore } from './Console.store';
 
 const { logs } = useConsoleStore();
+
+const { getColor } = useTheme();
 </script>
 
 <style lang="scss">

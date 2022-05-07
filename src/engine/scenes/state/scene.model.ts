@@ -14,7 +14,11 @@ export interface SceneLog {
 export interface SceneText {
   id: ID;
   content: string;
+  style: SceneStyle;
+}
+
+export interface SceneStyle {
   color?: SceneTextColor;
 }
 
-export type SceneTextColor = "default" | "primary" | "secondary";
+export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";
