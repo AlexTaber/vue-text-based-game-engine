@@ -1,9 +1,10 @@
-import { watch } from "vue";
+import { nextTick, watch } from "vue";
 import type { SceneLog, SceneText } from "../scenes/state/scene.model";
 import { useScenesStore } from "../scenes/state/scenes.store";
 import { useEntityStore } from "../state/entity-store";
 import type { ID } from "../state/entity-store";
 import { delay } from "../utils/delay";
+import { useLogTextItemsFactory } from "../scenes/scene/log/log-text-items.factory";
 
 const store = useEntityStore("Console", {
   entities: [] as SceneLog[],
@@ -16,13 +17,12 @@ export function useConsoleStore() {
     active: activeScene,
     activeId: activeSceneId,
     setActive: setActiveScene,
-    updateState: updateSceneState
   } = useScenesStore();
 
   watch(activeSceneId, onSetActive);
 
-  const onLogSubmit = (inputName: string, value: string) => {
-    updateSceneState(activeScene.value?.name || "", { [inputName]: value });
+  const onLogSubmit = async () => {
+    await nextTick();
     onNextLog();
   };
 
@@ -42,10 +42,14 @@ export function useConsoleStore() {
 
   async function setNextLog(log: SceneLog) {
     await delay(400);
-    store.add({ ...log, textItems: log.textItems ? [] : undefined });
+    store.add({ ...log, textItems: log.slot ? [] : undefined });
     store.setActive(log.id);
 
-    if (log.textItems) onNextTextItem(log);
+    if (log.slot) {
+      const textItemsFactory = useLogTextItemsFactory(log);
+      log.textItems = textItemsFactory.get();
+      onNextTextItem(log);
+    }
   }
 
   function onNextTextItem(log: SceneLog) {

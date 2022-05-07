@@ -1,13 +1,13 @@
 <template>
-  <Scene name="intro" v-slot="{ state }">
+  <Scene name="intro">
     <SceneInputLabel>
       What is your name?
     </SceneInputLabel>
 
-    <SceneInput name="name" />
+    <SceneInput name="name" @submit="name = $event" />
 
     <SceneLog>
-      Hello <SceneText color="primary" :bounce="true">{{ state.name }}</SceneText>
+      Hello <SceneText color="primary" :bounce="true">{{ name }}!</SceneText>
     </SceneLog>
 
     <SceneLog>
@@ -22,4 +22,7 @@ import SceneLog from '../../../engine/scenes/scene/log/SceneLog.vue';
 import SceneText from '../../../engine/scenes/scene/text/SceneText.vue';
 import SceneInputLabel from '../../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import SceneInput from '../../../engine/scenes/scene/input/SceneInput.vue';
+import { ref } from 'vue';
+
+const name = ref("");
 </script>

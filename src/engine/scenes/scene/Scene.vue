@@ -1,26 +1,23 @@
 <template>
-  <slot v-bind="{ state: scene?.state }" />
+  <slot />
 </template>
 
 <script setup lang="ts">
 import { useScenesStore } from '../state/scenes.store';
-import { computed, onMounted, provide } from 'vue';
+import { onMounted, provide } from 'vue';
 
 const props = defineProps<{
   name: string;
   nextScene?: string
 }>();
 
-const { active, add, setActive, findById } = useScenesStore();
+const { active, add, setActive } = useScenesStore();
 
-add({ name: props.name, state: {}, logs: [], nextScene: props.nextScene });
+add({ name: props.name, logs: [], nextScene: props.nextScene });
 
 provide("sceneName", props.name);
 
-const scene = computed(() => findById(props.name));
-
 onMounted(() => {
-  console.log(scene.value);
   if (!active.value) setActive(props.name);
 });
 </script>

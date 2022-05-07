@@ -1,9 +1,8 @@
-import { PropType } from "vue";
+import { PropType, Slot } from "vue";
 import { ID } from "../../state/entity-store";
 
 export interface Scene {
   name: string;
-  state: any;
   logs: SceneLog[];
   nextScene?: string;
 }
@@ -11,7 +10,9 @@ export interface Scene {
 export interface SceneLog {
   id: ID;
   type: SceneLogType;
+  slot?: Slot;
   textItems?: SceneText[];
+  style?: SceneStyle;
   margin?: SceneTextSpacing;
   emit?: (e: "submit", v: string) => void;
   name?: string;

@@ -10,7 +10,7 @@
           v-else-if="log.type === 'input'"
           :log="log"
           :active="index === logs.length - 1"
-          @submit="onLogSubmit(log.name!, $event)"
+          @submit="onLogSubmit()"
         />
       </template>
     </div>

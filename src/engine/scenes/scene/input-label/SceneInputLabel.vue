@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { logProps } from '../../state/scene.model';
-import { useLog } from '../use-log';
+import { useLog } from '../log/use-log';
 
 defineProps(logProps);
 

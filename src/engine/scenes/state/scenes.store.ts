@@ -5,7 +5,7 @@ import { Scene, SceneLog, SceneText } from "./scene.model";
 
 const store = useEntityStore("Scenes", {
   entities: [] as Scene[],
-}, { idKey: "name" });
+}, { idKey: "name", debug: true });
 
 export function useScenesStore() {
   const activeId = computed(() => store.active.value?.name);
@@ -15,17 +15,11 @@ export function useScenesStore() {
     store.update(sceneName, { logs: arrayAdd(scene?.logs || [], log) });
   }
 
-  const updateState = (sceneName: string, state: any) => {
-    const scene = store.findById(sceneName);
-    store.update(sceneName, { state: { ...scene?.state, ...state} });
-  }
-
-  const addTextItemToLog = (sceneName: string, logId: ID, item: SceneText) => {
+  const setLogTextItems = (sceneName: string, logId: ID, textItems: SceneText[]) => {
     const currentLogs = store.findById(sceneName)?.logs || [];
-    const log = currentLogs.find(l => l.id === logId);
 
     store.update(sceneName, {
-      logs: arrayUpdateItemByProperty(currentLogs, "id", logId, { textItems: arrayAdd(log?.textItems || [], item)}),
+      logs: arrayUpdateItemByProperty(currentLogs, "id", logId, { textItems }),
     });
   }
 
@@ -37,7 +31,6 @@ export function useScenesStore() {
     add: store.add,
     findById: store.findById,
     addLog,
-    updateState,
-    addTextItemToLog,
+    setLogTextItems,
   }
 }
