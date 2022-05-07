@@ -3,6 +3,7 @@ import { ID } from "../../state/entity-store";
 
 export interface Scene {
   name: string;
+  state: any;
   logs: SceneLog[];
   nextScene?: string;
 }
@@ -13,6 +14,7 @@ export interface SceneLog {
   textItems?: SceneText[];
   margin?: SceneTextSpacing;
   emit?: (e: "submit", v: string) => void;
+  name?: string;
 }
 
 export type SceneLogType = "log" | "input" | "select";

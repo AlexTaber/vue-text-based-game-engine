@@ -1,5 +1,5 @@
 import { watch } from "vue";
-import type { Scene, SceneLog, SceneText } from "../scenes/state/scene.model";
+import type { SceneLog, SceneText } from "../scenes/state/scene.model";
 import { useScenesStore } from "../scenes/state/scenes.store";
 import { useEntityStore } from "../state/entity-store";
 import type { ID } from "../state/entity-store";
@@ -12,16 +12,25 @@ const store = useEntityStore("Console", {
 });
 
 export function useConsoleStore() {
-  const { active: activeScene, setActive: setActiveScene } = useScenesStore();
+  const {
+    active: activeScene,
+    activeId: activeSceneId,
+    setActive: setActiveScene,
+    updateState: updateSceneState
+  } = useScenesStore();
 
-  watch(activeScene, onSetActive);
+  watch(activeSceneId, onSetActive);
 
-  const onLogSubmit = (value: string) => {
+  const onLogSubmit = (inputName: string, value: string) => {
+    updateSceneState(activeScene.value?.name || "", { [inputName]: value });
     onNextLog();
   };
 
-  function onSetActive(scene: Scene | undefined) {
-    if (scene) onNextLog();
+  function onSetActive() {
+    if (activeScene.value) {
+      store.patch({ entities: [] });
+      onNextLog();
+    }
   }
 
   function onNextLog() {

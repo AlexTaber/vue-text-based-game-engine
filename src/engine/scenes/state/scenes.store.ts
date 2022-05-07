@@ -1,3 +1,4 @@
+import { computed } from "vue";
 import { ID, useEntityStore } from "../../state/entity-store";
 import { arrayAdd, arrayUpdateItemByProperty } from "../../state/utils";
 import { Scene, SceneLog, SceneText } from "./scene.model";
@@ -7,9 +8,16 @@ const store = useEntityStore("Scenes", {
 }, { idKey: "name" });
 
 export function useScenesStore() {
+  const activeId = computed(() => store.active.value?.name);
+
   const addLog = (sceneName: string, log: SceneLog) => {
     const scene = store.findById(sceneName);
     store.update(sceneName, { logs: arrayAdd(scene?.logs || [], log) });
+  }
+
+  const updateState = (sceneName: string, state: any) => {
+    const scene = store.findById(sceneName);
+    store.update(sceneName, { state: { ...scene?.state, ...state} });
   }
 
   const addTextItemToLog = (sceneName: string, logId: ID, item: SceneText) => {
@@ -24,10 +32,12 @@ export function useScenesStore() {
   return {
     scenes: store.entities,
     active: store.active,
+    activeId,
     setActive: store.setActive,
     add: store.add,
     findById: store.findById,
     addLog,
+    updateState,
     addTextItemToLog,
   }
 }
