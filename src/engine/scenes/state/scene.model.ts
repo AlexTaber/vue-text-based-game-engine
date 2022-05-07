@@ -19,6 +19,7 @@ export interface SceneText {
 }
 
 export interface SceneStyle {
+  size?: SceneTextSize;
   color?: SceneTextColor;
   bounce?: boolean;
   glitch?: boolean;
@@ -31,6 +32,8 @@ export interface SceneTextSpacing {
   left?: SceneTextSpacingSize;
   right?: SceneTextSpacingSize;
 }
+
+export type SceneTextSize = "xLarge" |"large" | "small" | "xSmall";
 
 export type SceneTextSpacingSize = "large" | "small" | "none";
 

@@ -63,8 +63,8 @@ export function useConsoleStore() {
     const map = {
       instant: 0,
       fast: 10,
-      medium: 30,
-      slow: 60,
+      medium: 25,
+      slow: 100,
     }
 
     return map[item.style.speed || "medium"];

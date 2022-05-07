@@ -9,7 +9,7 @@
         class="log"
         :style="{
           marginTop: getSpacingSize(log.margin?.top),
-          marginBottom: getSpacingSize(log.margin?.bottom) || '10px',
+          marginBottom: getSpacingSize(log.margin?.bottom) || '0.5em',
           marginLeft: getSpacingSize(log.margin?.left),
           marginRight: getSpacingSize(log.margin?.right),
         }"
@@ -24,6 +24,7 @@
           }"
           :style="{
             color: getColor(item.style.color),
+            fontSize: getSize(item.style.size),
           }"
         >
           {{ item.content }}
@@ -34,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { SceneTextSpacingSize } from '../scenes/state/scene.model';
+import { SceneTextSize, SceneTextSpacingSize } from '../scenes/state/scene.model';
 import { useTheme } from '../theme';
 import { useConsoleStore } from './Console.store';
 
@@ -45,8 +46,19 @@ const { getColor } = useTheme();
 const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
   const map = {
     none: "0px",
-    small: "5px",
-    large: "20px",
+    small: "0.5em",
+    large: "2em",
+  };
+
+  return key ? map[key] : undefined;
+}
+
+const getSize = (key: SceneTextSize | undefined) => {
+  const map = {
+    xSmall: "0.5em",
+    small: "1em",
+    large: "3em",
+    xLarge: "5em",
   };
 
   return key ? map[key] : undefined;
@@ -62,7 +74,7 @@ const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
   padding: 40px;
   font-family: 'VT323', monospace;
   font-size: 2em;
-  line-height: 0.7em;
+  // line-height: 0.7em;
 }
 
 .content {
@@ -110,6 +122,7 @@ const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
 .glitch {
   position: relative;
   animation: glitch 5s 5s infinite;
+  white-space: nowrap;
 }
 
 .glitch::before {
@@ -119,8 +132,8 @@ const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
   text-shadow: -5px 0 magenta;
   background: black;
   overflow: hidden;
-  top: 0;
   animation: noise-1 3s linear infinite alternate-reverse, glitch 5s 5.05s infinite;
+  white-space: nowrap;
 }
 
 .glitch::after {
@@ -130,8 +143,8 @@ const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
   text-shadow: -5px 0 lightgreen;
   background: black;
   overflow: hidden;
-  top: 0;
   animation: noise-2 3s linear infinite alternate-reverse, glitch 5s 5s infinite;
+  white-space: nowrap;
 }
 
 @keyframes glitch {

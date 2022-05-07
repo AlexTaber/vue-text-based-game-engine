@@ -24,7 +24,7 @@ export const logProps = {
 export function useLog(paramsInput?: LogParams) {
   const context = getCurrentInstance();
 
-  const params = { ...paramsInput, ...context?.props };
+  const params = getParams();
 
   const sceneName = inject("sceneName") as string;
 
@@ -37,6 +37,12 @@ export function useLog(paramsInput?: LogParams) {
   addLog(sceneName, { id, textItems: [], margin: params.margin });
 
   setTextItems();
+
+  function getParams() {
+    const props = { ...context?.props };
+    Object.keys(props).forEach(key => props[key] === undefined ? delete props[key] : {});
+    return { ...paramsInput, ...props };
+  }
 
   function setTextItems() {
     const nodes = context?.slots.default?.() || [];

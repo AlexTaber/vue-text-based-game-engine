@@ -1,17 +1,22 @@
 <template>
   <Scene name="title" next-scene="intro">
-    <SceneMessage>
-      <SceneText :glitch="true" speed="instant">
-        Welcome to Night of a Thousand Dans
-      </SceneText>
+    <SceneMessage :default-style="{ size: 'large' }">
+      Night of a
     </SceneMessage>
 
-    <SceneMessage :margin="{ bottom: 'none' }">
+    <SceneMessage
+      :default-style="{
+        glitch: true,
+        speed: 'slow',
+        size: 'xLarge',
+      }"
+      :margin="{ bottom: 'large' }"
+    >
+      THOUSAND DANS
+    </SceneMessage>
+
+    <SceneMessage>
       Off By One Entertainment TM. All rights reserved
-    </SceneMessage>
-
-    <SceneMessage>
-      Newline
     </SceneMessage>
 
     <SceneInputLabel>
@@ -27,5 +32,4 @@ import Scene from '../../../engine/scenes/scene/Scene.vue';
 import SceneMessage from '../../../engine/scenes/scene/message/SceneMessage.vue';
 import SceneInputLabel from '../../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import SceneInput from '../../../engine/scenes/scene/input/SceneInput.vue';
-import SceneText from '../../../engine/scenes/scene/text/SceneText.vue';
 </script>
