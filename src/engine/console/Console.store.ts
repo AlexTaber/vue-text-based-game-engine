@@ -16,7 +16,6 @@ export function useConsoleStore() {
   const {
     active: activeScene,
     activeId: activeSceneId,
-    setActive: setActiveScene,
   } = useScenesStore();
 
   watch(activeSceneId, onSetActive);
@@ -34,9 +33,17 @@ export function useConsoleStore() {
 
   function onNextLog() {
     const logs = activeScene.value?.logs || [];
-    const nextLogIndex = logs.findIndex(l => l.id === store.active.value?.id) + 1;
+    const nextLogIndex = getNextLogIndex(logs);
     const nextLog = logs[nextLogIndex];
     nextLog ? setNextLog(nextLog) : endScene();
+  }
+
+  function getNextLogIndex(logs: SceneLog[]) {
+    if (store.active.value?.link && store.active.value?.component.props.if !== false) {
+      return logs.findIndex(l => l.id === store.active.value?.link);
+    } else {
+      return logs.findIndex(l => l.id === store.active.value?.id) + 1;
+    }
   }
 
   async function setNextLog(log: SceneLog) {

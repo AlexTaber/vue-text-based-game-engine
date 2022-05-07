@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, ref } from 'vue';
+import { nextTick, onUnmounted, ref } from 'vue';
 import { SceneLog } from '../../scenes/state/scene.model';
 import { useTheme } from '../../theme';
 
@@ -32,9 +32,13 @@ const emit = defineEmits<{
   (e: "submit", v: string | undefined): void;
 }>();
 
+let unmounted = false;
+
 const { getColor } = useTheme();
 
 const optionIndex = ref(0);
+
+onUnmounted(() => unmounted = true);
 
 function onKeyPress(e: KeyboardEvent) {
   if (e.code === "ArrowDown") {
@@ -46,9 +50,10 @@ function onKeyPress(e: KeyboardEvent) {
   }
 }
 
-function onSubmit(value: string) {
-  emit("submit", value);
+async function onSubmit(value: string) {
   props.log.component.emit?.("submit", value);
+  await nextTick();
+  if (!unmounted) emit("submit", value);
 }
 </script>
 

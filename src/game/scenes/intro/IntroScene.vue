@@ -1,10 +1,14 @@
 <template>
   <Scene name="intro">
-    <SceneInputLabel>
+    <SceneInputLabel id="nameLabel">
       What is your name?
     </SceneInputLabel>
 
     <SceneInput @submit="name = $event" />
+
+    <SceneLog :if="name === ''" link="nameLabel">
+      C'mon, you have a name right?
+    </SceneLog>
 
     <SceneLog color="primary">
       Hello <SceneText color="danger" :bounce="true">{{ name }}!</SceneText>

@@ -19,6 +19,7 @@ export interface SceneLog {
   options?: SceneSelectOption[];
   style?: SceneStyle;
   margin?: SceneTextSpacing;
+  link?: string;
 }
 
 export type SceneLogType = "log" | "input" | "select";
@@ -78,9 +79,17 @@ export const textProps = {
 
 export const logProps = {
   ...textProps,
+  id: {
+    type: String,
+    default: undefined,
+  },
   margin: {
     type: Object as PropType<SceneTextSpacing>,
     default: undefined
+  },
+  link: {
+    type: String,
+    default: undefined,
   },
   if: {
     type: Boolean,

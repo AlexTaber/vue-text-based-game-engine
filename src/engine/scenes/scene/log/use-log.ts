@@ -5,6 +5,7 @@ import { SceneStyle, SceneTextSpacing } from '../../state/scene.model';
 
 interface LogParams extends SceneStyle {
   margin?: SceneTextSpacing;
+  link?: string;
 };
 
 export function useLog(paramsInput?: LogParams) {
@@ -14,7 +15,7 @@ export function useLog(paramsInput?: LogParams) {
 
   const sceneName = inject("sceneName") as string;
 
-  const id = generateUUID();
+  const id = component?.props.id as string || generateUUID();
 
   provide("logId", id);
 
@@ -30,7 +31,8 @@ export function useLog(paramsInput?: LogParams) {
     textItems: [],
     type: "log",
     style: params,
-    margin: params.margin
+    margin: params.margin,
+    link: params.link,
   });
 
   function getParams() {
