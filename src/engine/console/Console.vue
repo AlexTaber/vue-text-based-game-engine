@@ -12,6 +12,13 @@
           :active="index === logs.length - 1"
           @submit="onLogSubmit()"
         />
+
+        <ConsoleSelect
+          v-else-if="log.type === 'select'"
+          :log="log"
+          :active="index === logs.length - 1"
+          @submit="onLogSubmit()"
+        />
       </template>
     </div>
   </div>
@@ -21,6 +28,7 @@
 import { useConsoleStore } from './Console.store';
 import ConsoleLog from './log/ConsoleLog.vue';
 import ConsoleInput from './input/ConsoleInput.vue';
+import ConsoleSelect from './select/ConsoleSelect.vue';
 
 const { logs, onLogSubmit } = useConsoleStore();
 </script>

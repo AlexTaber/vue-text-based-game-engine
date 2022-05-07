@@ -3,6 +3,10 @@
     <TitleScene />
 
     <IntroScene />
+
+    <RedScene />
+
+    <BlueScene />
   </Game>
 </template>
 
@@ -10,6 +14,8 @@
 import IntroScene from "./scenes/intro/IntroScene.vue";
 import TitleScene from "./scenes/title/TitleScene.vue"
 import Game from "../engine/Game.vue";
+import RedScene from "./scenes/intro/RedScene.vue";
+import BlueScene from "./scenes/intro/BlueScene.vue";
 </script>
 
 <style>

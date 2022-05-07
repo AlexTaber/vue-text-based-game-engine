@@ -7,7 +7,7 @@ const store = useStore("Theme", {
   theme: {
     default: "white",
     primary: "#ea36af",
-    secondary: "blue",
+    secondary: "lime",
     danger: "red",
     info: "yellow",
   } as Theme,

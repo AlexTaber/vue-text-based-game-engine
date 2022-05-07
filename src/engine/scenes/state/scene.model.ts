@@ -1,4 +1,4 @@
-import { PropType, Slot, ComputedRef } from "vue";
+import { PropType, Slot } from "vue";
 import { ID } from "../../state/entity-store";
 
 export interface Scene {
@@ -16,9 +16,9 @@ export interface SceneLog {
     props: { if: boolean },
   },
   textItems?: SceneText[];
+  options?: SceneSelectOption[];
   style?: SceneStyle;
   margin?: SceneTextSpacing;
-  name?: string;
 }
 
 export type SceneLogType = "log" | "input" | "select";
@@ -27,6 +27,12 @@ export interface SceneText {
   id: ID;
   content: string;
   style: SceneStyle;
+}
+
+export interface SceneSelectOption {
+  id: ID;
+  value: string;
+  content: string;
 }
 
 export interface SceneStyle {

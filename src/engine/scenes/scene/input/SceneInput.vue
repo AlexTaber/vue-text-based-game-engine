@@ -1,13 +1,11 @@
 <template></template>
 
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
 import { inject } from 'vue';
 import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 
 const props = withDefaults(defineProps<{
-  name?: string;
   if?: boolean;
 }>(), { if: undefined });
 
@@ -21,7 +19,6 @@ const { addLog } = useScenesStore();
 
 addLog(sceneName, {
   id: generateUUID(),
-  name: props.name,
   type: "input",
   component: {
     emit,

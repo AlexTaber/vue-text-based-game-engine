@@ -1,4 +1,4 @@
-import { nextTick, watch } from "vue";
+import { watch } from "vue";
 import type { SceneLog, SceneText } from "../scenes/state/scene.model";
 import { useScenesStore } from "../scenes/state/scenes.store";
 import { useEntityStore } from "../state/entity-store";
@@ -22,7 +22,6 @@ export function useConsoleStore() {
   watch(activeSceneId, onSetActive);
 
   const onLogSubmit = async () => {
-    await nextTick();
     onNextLog();
   };
 
