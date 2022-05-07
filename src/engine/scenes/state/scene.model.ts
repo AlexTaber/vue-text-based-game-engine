@@ -4,7 +4,7 @@ import { ID } from "../../state/entity-store";
 export interface Scene {
   name: string;
   logs: SceneLog[];
-  nextScene?: string;
+  emit: (e: "finish") => void;
 }
 
 export interface SceneLog {

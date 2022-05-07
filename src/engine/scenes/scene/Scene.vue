@@ -8,12 +8,15 @@ import { onMounted, provide } from 'vue';
 
 const props = defineProps<{
   name: string;
-  nextScene?: string
+}>();
+
+const emit = defineEmits<{
+  (e: "finish"): void;
 }>();
 
 const { active, add, setActive } = useScenesStore();
 
-add({ name: props.name, logs: [], nextScene: props.nextScene });
+add({ name: props.name, logs: [], emit });
 
 provide("sceneName", props.name);
 

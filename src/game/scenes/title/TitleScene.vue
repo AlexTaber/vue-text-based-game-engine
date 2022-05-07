@@ -1,5 +1,5 @@
 <template>
-  <Scene name="title" next-scene="intro">
+  <Scene name="title" @finish="setActive('intro')">
     <SceneLog size="large">
       Night of a
     </SceneLog>
@@ -30,4 +30,7 @@ import Scene from '../../../engine/scenes/scene/Scene.vue';
 import SceneLog from '../../../engine/scenes/scene/log/SceneLog.vue';
 import SceneInputLabel from '../../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import SceneInput from '../../../engine/scenes/scene/input/SceneInput.vue';
+import { useScenesStore } from '../../../engine/scenes/state/scenes.store';
+
+const { setActive } = useScenesStore();
 </script>

@@ -90,7 +90,7 @@ export function useConsoleStore() {
   }
 
   function endScene() {
-    setActiveScene(activeScene.value?.nextScene);
+    activeScene.value?.emit("finish");
   }
 
   return {
