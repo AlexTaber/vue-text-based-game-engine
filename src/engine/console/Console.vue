@@ -56,12 +56,13 @@ const getSpacingSize = (key: SceneTextSpacingSize | undefined) => {
 const getSize = (key: SceneTextSize | undefined) => {
   const map = {
     xSmall: "0.5em",
-    small: "1em",
-    large: "3em",
+    small: "0.7em",
+    medium: "1em",
+    large: "2em",
     xLarge: "5em",
   };
 
-  return key ? map[key] : undefined;
+  return key ? map[key || "medium"] : undefined;
 }
 </script>
 
