@@ -1,3 +1,4 @@
+import { PropType } from "vue";
 import { ID } from "../../state/entity-store";
 
 export interface Scene {
@@ -41,7 +42,27 @@ export type SceneTextSpeed = "instant" | "fast" | "slow";
 
 export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";
 
-export interface LogParams {
-  defaultStyle?: SceneStyle;
-  margin?: SceneTextSpacing;
+export const textProps = {
+  size: {
+    type: String as PropType<SceneTextSize>,
+    default: undefined
+  },
+  color: {
+    type: String as PropType<SceneTextColor>,
+    default: undefined
+  },
+  speed: {
+    type: String as PropType<SceneTextSpeed>,
+    default: undefined,
+  },
+  bounce: Boolean,
+  glitch: Boolean,
+}
+
+export const logProps = {
+  ...textProps,
+  margin: {
+    type: Object as PropType<SceneTextSpacing>,
+    default: undefined
+  },
 }

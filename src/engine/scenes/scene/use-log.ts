@@ -1,25 +1,13 @@
-import { getCurrentInstance, inject, PropType, provide } from 'vue';
+import { getCurrentInstance, inject, provide } from 'vue';
 import type { RendererElement, VNode } from 'vue';
 import { generateUUID } from '../../utils/generate-uuid';
 import { getTextFromNode } from '../../utils/get-text-from-node';
 import { useScenesStore } from '../state/scenes.store';
 import { SceneStyle, SceneTextSpacing } from '../state/scene.model';
 
-interface LogParams {
-  defaultStyle?: SceneStyle;
+interface LogParams extends SceneStyle {
   margin?: SceneTextSpacing;
 };
-
-export const logProps = {
-  defaultStyle: {
-    type: Object as PropType<SceneStyle>,
-    default: undefined
-  },
-  margin: {
-    type: Object as PropType<SceneTextSpacing>,
-    default: undefined
-  },
-}
 
 export function useLog(paramsInput?: LogParams) {
   const context = getCurrentInstance();
@@ -56,7 +44,7 @@ export function useLog(paramsInput?: LogParams) {
     addTextItemToLog(sceneName, id, {
       id: generateUUID(),
       content: getTextFromNode(node) || "",
-      style: { ...params?.defaultStyle },
+      style: { ...params },
     });
   }
 
@@ -65,7 +53,7 @@ export function useLog(paramsInput?: LogParams) {
       id: generateUUID(),
       content: getTextFromNode((node.children as RendererElement).default()[0]) || "",
       style: {
-        ...params?.defaultStyle,
+        ...params,
         ...node.props,
       },
     });

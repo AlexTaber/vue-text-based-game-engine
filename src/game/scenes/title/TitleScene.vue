@@ -1,23 +1,21 @@
 <template>
   <Scene name="title" next-scene="intro">
-    <SceneMessage :default-style="{ size: 'large' }">
+    <SceneLog size="large">
       Night of a
-    </SceneMessage>
+    </SceneLog>
 
-    <SceneMessage
-      :default-style="{
-        glitch: true,
-        speed: 'slow',
-        size: 'xLarge',
-      }"
+    <SceneLog
+      size="xLarge"
+      speed="slow"
+      :glitch="true"
       :margin="{ bottom: 'large' }"
     >
       THOUSAND DANS
-    </SceneMessage>
+    </SceneLog>
 
-    <SceneMessage>
-      Off By One Entertainment TM. All rights reserved
-    </SceneMessage>
+    <SceneLog>
+      Off By One Entertainment TM. All rights reserved.
+    </SceneLog>
 
     <SceneInputLabel>
       Press 'Enter' to Begin...
@@ -29,7 +27,7 @@
 
 <script setup lang="ts">
 import Scene from '../../../engine/scenes/scene/Scene.vue';
-import SceneMessage from '../../../engine/scenes/scene/message/SceneMessage.vue';
+import SceneLog from '../../../engine/scenes/scene/log/SceneLog.vue';
 import SceneInputLabel from '../../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import SceneInput from '../../../engine/scenes/scene/input/SceneInput.vue';
 </script>

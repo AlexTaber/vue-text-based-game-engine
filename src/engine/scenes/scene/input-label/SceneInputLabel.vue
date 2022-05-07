@@ -1,9 +1,10 @@
 <template></template>
 
 <script setup lang="ts">
-import { logProps, useLog } from '../use-log';
+import { logProps } from '../../state/scene.model';
+import { useLog } from '../use-log';
 
 defineProps(logProps);
 
-useLog({ defaultStyle: { color: "info" } });
+useLog({ color: "info" });
 </script>
