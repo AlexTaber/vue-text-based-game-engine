@@ -11,7 +11,7 @@ const props = defineProps<{
   nextScene?: string
 }>();
 
-const { active, add, setActive } = useScenesStore();
+const { active, add, setActive, findById } = useScenesStore();
 
 add({ name: props.name, logs: [], nextScene: props.nextScene });
 
@@ -20,6 +20,7 @@ provide("sceneName", props.name);
 const state = {};
 
 onMounted(() => {
+  console.log(findById(props.name));
   if (!active.value) setActive(props.name);
 });
 </script>

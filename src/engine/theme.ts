@@ -6,7 +6,7 @@ export type Theme = Record<SceneTextColor, string>;
 const store = useStore("Theme", {
   theme: {
     default: "white",
-    primary: "purple",
+    primary: "#ea36af",
     secondary: "blue",
     danger: "red",
     info: "yellow",

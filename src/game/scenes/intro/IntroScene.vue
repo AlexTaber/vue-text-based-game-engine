@@ -1,6 +1,6 @@
 <template>
   <Scene name="intro" v-slot="{ state }">
-    <SceneMessage>
+    <SceneMessage :margin="{ bottom: 'none' }">
       Hello <SceneText color="primary" :bounce="true">Michael!</SceneText>
     </SceneMessage>
 

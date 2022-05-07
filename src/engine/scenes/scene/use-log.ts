@@ -1,16 +1,30 @@
-import { getCurrentInstance, inject, provide } from 'vue';
+import { getCurrentInstance, inject, PropType, provide } from 'vue';
 import type { RendererElement, VNode } from 'vue';
 import { generateUUID } from '../../utils/generate-uuid';
 import { getTextFromNode } from '../../utils/get-text-from-node';
 import { useScenesStore } from '../state/scenes.store';
-import { SceneStyle, SceneTextColor } from '../state/scene.model';
+import { SceneStyle, SceneTextSpacing } from '../state/scene.model';
 
 interface LogParams {
   defaultStyle?: SceneStyle;
+  margin?: SceneTextSpacing;
+};
+
+export const logProps = {
+  defaultStyle: {
+    type: Object as PropType<SceneStyle>,
+    default: undefined
+  },
+  margin: {
+    type: Object as PropType<SceneTextSpacing>,
+    default: undefined
+  },
 }
 
-export function useLog(params?: LogParams) {
+export function useLog(paramsInput?: LogParams) {
   const context = getCurrentInstance();
+
+  const params = { ...paramsInput, ...context?.props };
 
   const sceneName = inject("sceneName") as string;
 
@@ -20,7 +34,7 @@ export function useLog(params?: LogParams) {
 
   const { addLog, addTextItemToLog } = useScenesStore();
 
-  addLog(sceneName, { id, textItems: [] });
+  addLog(sceneName, { id, textItems: [], margin: params.margin });
 
   setTextItems();
 
@@ -36,10 +50,7 @@ export function useLog(params?: LogParams) {
     addTextItemToLog(sceneName, id, {
       id: generateUUID(),
       content: getTextFromNode(node) || "",
-      style: {
-        color: params?.defaultStyle?.color,
-        bounce: params?.defaultStyle?.bounce,
-      },
+      style: { ...params?.defaultStyle },
     });
   }
 
@@ -48,8 +59,8 @@ export function useLog(params?: LogParams) {
       id: generateUUID(),
       content: getTextFromNode((node.children as RendererElement).default()[0]) || "",
       style: {
-        color: node.props?.color as SceneTextColor | undefined || params?.defaultStyle?.color,
-        bounce: node.props?.bounce || params?.defaultStyle?.bounce,
+        ...params?.defaultStyle,
+        ...node.props,
       },
     });
   }

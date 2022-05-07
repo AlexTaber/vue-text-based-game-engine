@@ -9,6 +9,7 @@ export interface Scene {
 export interface SceneLog {
   id: ID;
   textItems: SceneText[];
+  margin?: SceneTextSpacing;
 }
 
 export interface SceneText {
@@ -20,6 +21,24 @@ export interface SceneText {
 export interface SceneStyle {
   color?: SceneTextColor;
   bounce?: boolean;
+  glitch?: boolean;
+  speed?: SceneTextSpeed;
 }
 
+export interface SceneTextSpacing {
+  top?: SceneTextSpacingSize;
+  bottom?: SceneTextSpacingSize;
+  left?: SceneTextSpacingSize;
+  right?: SceneTextSpacingSize;
+}
+
+export type SceneTextSpacingSize = "large" | "small" | "none";
+
+export type SceneTextSpeed = "instant" | "fast" | "slow";
+
 export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";
+
+export interface LogParams {
+  defaultStyle?: SceneStyle;
+  margin?: SceneTextSpacing;
+}

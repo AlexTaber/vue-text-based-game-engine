@@ -29,7 +29,7 @@ export function useConsoleStore() {
 
   async function setNextLog(log: SceneLog) {
     await delay(400);
-    store.add({ id: log.id, textItems: [] });
+    store.add({ ...log, textItems: [] });
     store.setActive(log.id);
     onNextTextItem(log);
   }
@@ -55,8 +55,19 @@ export function useConsoleStore() {
     const activeItem = store.active.value?.textItems.find(i => i.id === store.$state.activeItemId);
     activeItem!.content += nextChar;
     store.characterIndex.value ++;
-    await delay(30);
+    await delay(getTextSpeed(item));
     onNextCharacter(log, item);
+  }
+
+  function getTextSpeed(item: SceneText) {
+    const map = {
+      instant: 0,
+      fast: 10,
+      medium: 30,
+      slow: 60,
+    }
+
+    return map[item.style.speed || "medium"];
   }
 
   function endScene() {
