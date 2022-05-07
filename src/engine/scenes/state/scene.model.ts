@@ -19,6 +19,7 @@ export interface SceneText {
 
 export interface SceneStyle {
   color?: SceneTextColor;
+  bounce?: boolean;
 }
 
 export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";

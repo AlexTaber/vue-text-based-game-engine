@@ -4,9 +4,16 @@
   <div class="console">
     <div class="content">
       <div v-for="log in logs" :key="log.id" class="log">
-        <span v-for="item in log.textItems" :style="{
-          color: getColor(item.style.color),
-        }">
+        <span
+          v-for="item in log.textItems"
+          :key="item.id"
+          :class="{
+            bounce: item.style.bounce,
+          }"
+          :style="{
+            color: getColor(item.style.color),
+          }"
+        >
           {{ item.content }}
         </span>
       </div>
@@ -51,6 +58,28 @@ const { getColor } = useTheme();
   }
   to {
     text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
+  }
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+@keyframes bounce {
+  0% {
+    top: 3px;
+  }
+  50% {
+    top: -8px;
+  }
+  100% {
+    top: 3px;
   }
 }
 </style>

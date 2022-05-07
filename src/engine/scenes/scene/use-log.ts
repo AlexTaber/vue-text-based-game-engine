@@ -37,7 +37,8 @@ export function useLog(params?: LogParams) {
       id: generateUUID(),
       content: getTextFromNode(node) || "",
       style: {
-        color: context?.props.color as SceneTextColor | undefined || params?.defaultStyle?.color,
+        color: params?.defaultStyle?.color,
+        bounce: params?.defaultStyle?.bounce,
       },
     });
   }
@@ -47,7 +48,8 @@ export function useLog(params?: LogParams) {
       id: generateUUID(),
       content: getTextFromNode((node.children as RendererElement).default()[0]) || "",
       style: {
-        color: context?.props.color as SceneTextColor | undefined || params?.defaultStyle?.color,
+        color: node.props?.color as SceneTextColor | undefined || params?.defaultStyle?.color,
+        bounce: node.props?.bounce || params?.defaultStyle?.bounce,
       },
     });
   }
