@@ -16,6 +16,10 @@ export function useConsoleStore() {
 
   watch(activeScene, onSetActive);
 
+  const onLogSubmit = (value: string) => {
+    onNextLog();
+  };
+
   function onSetActive(scene: Scene | undefined) {
     if (scene) onNextLog();
   }
@@ -29,19 +33,20 @@ export function useConsoleStore() {
 
   async function setNextLog(log: SceneLog) {
     await delay(400);
-    store.add({ ...log, textItems: [] });
+    store.add({ ...log, textItems: log.textItems ? [] : undefined });
     store.setActive(log.id);
-    onNextTextItem(log);
+
+    if (log.textItems) onNextTextItem(log);
   }
 
   function onNextTextItem(log: SceneLog) {
-    const nextItemIndex = log.textItems.findIndex(i => i.id === store.$state.activeItemId) + 1;
-    const nextItem = log.textItems[nextItemIndex];
+    const nextItemIndex = log.textItems!.findIndex(i => i.id === store.$state.activeItemId) + 1;
+    const nextItem = log.textItems![nextItemIndex];
     nextItem ? setNextTextItem(log, nextItem) : onNextLog();
   }
 
   function setNextTextItem(log: SceneLog, item: SceneText) {
-    store.active.value?.textItems.push({ ...item, content: "", });
+    store.active.value?.textItems!.push({ ...item, content: "", });
     store.patch({ activeItemId: item.id, characterIndex: -1 });
     onNextCharacter(log, item);
   }
@@ -52,7 +57,7 @@ export function useConsoleStore() {
   }
 
   async function setNextChar(log: SceneLog, item: SceneText, nextChar: string) {
-    const activeItem = store.active.value?.textItems.find(i => i.id === store.$state.activeItemId);
+    const activeItem = store.active.value?.textItems!.find(i => i.id === store.$state.activeItemId);
     activeItem!.content += nextChar;
     store.characterIndex.value ++;
     await delay(getTextSpeed(item));
@@ -76,5 +81,6 @@ export function useConsoleStore() {
 
   return {
     logs: store.entities,
+    onLogSubmit,
   }
 }

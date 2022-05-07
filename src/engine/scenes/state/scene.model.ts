@@ -9,9 +9,13 @@ export interface Scene {
 
 export interface SceneLog {
   id: ID;
-  textItems: SceneText[];
+  type: SceneLogType;
+  textItems?: SceneText[];
   margin?: SceneTextSpacing;
+  emit?: (e: "submit", v: string) => void;
 }
+
+export type SceneLogType = "log" | "input" | "select";
 
 export interface SceneText {
   id: ID;

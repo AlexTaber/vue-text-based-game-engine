@@ -22,7 +22,7 @@ export function useLog(paramsInput?: LogParams) {
 
   const { addLog, addTextItemToLog } = useScenesStore();
 
-  addLog(sceneName, { id, textItems: [], margin: params.margin });
+  addLog(sceneName, { id, textItems: [], type: "log", margin: params.margin });
 
   setTextItems();
 

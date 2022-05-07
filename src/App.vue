@@ -22,4 +22,6 @@ import Game from "./game/Game.vue";
 body {
   margin: 0;
 }
+
+input, select, textarea, button{font-family:inherit;}
 </style>
