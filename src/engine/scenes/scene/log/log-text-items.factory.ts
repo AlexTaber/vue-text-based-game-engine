@@ -5,7 +5,7 @@ import { SceneLog, SceneText } from "../../state/scene.model";
 
 export function useLogTextItemsFactory(log: SceneLog) {
   function get(): SceneText[] {
-    const nodes = log.slot?.() || [];
+    const nodes = log.component.slot?.() || [];
 
     return nodes.map(
       node => typeof node.children === "string" ? getTextItemFromTextNode(node) : getTextItemFromComponentNode(node)

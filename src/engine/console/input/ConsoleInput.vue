@@ -21,7 +21,7 @@ const value = ref("");
 
 const onSubmit = (value: string) => {
   emit("submit", value);
-  props.log.emit?.("submit", value);
+  props.log.component.emit?.("submit", value);
 }
 </script>
 

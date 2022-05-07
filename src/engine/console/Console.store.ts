@@ -41,11 +41,13 @@ export function useConsoleStore() {
   }
 
   async function setNextLog(log: SceneLog) {
-    await delay(400);
-    store.add({ ...log, textItems: log.slot ? [] : undefined });
+    store.add({ ...log, textItems: log.type === "log" ? [] : undefined });
     store.setActive(log.id);
 
-    if (log.slot) {
+    if (log.component.props.if === false) {
+      onNextLog();
+    } else if (log.type === "log") {
+      await delay(400);
       const textItemsFactory = useLogTextItemsFactory(log);
       log.textItems = textItemsFactory.get();
       onNextTextItem(log);

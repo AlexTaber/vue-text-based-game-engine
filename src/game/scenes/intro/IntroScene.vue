@@ -10,6 +10,10 @@
       Hello <SceneText color="primary" :bounce="true">{{ name }}!</SceneText>
     </SceneLog>
 
+    <SceneLog :if="name === 'Alex'">
+      My name is Alex too!
+    </SceneLog>
+
     <SceneLog>
       It is a beautiful day!
     </SceneLog>

@@ -1,4 +1,4 @@
-import { getCurrentInstance, inject, provide } from 'vue';
+import { getCurrentInstance, inject, provide, ComponentInternalInstance, computed } from 'vue';
 import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 import { SceneStyle, SceneTextSpacing } from '../../state/scene.model';
@@ -8,7 +8,7 @@ interface LogParams extends SceneStyle {
 };
 
 export function useLog(paramsInput?: LogParams) {
-  const context = getCurrentInstance();
+  const component = getCurrentInstance();
 
   const params = getParams();
 
@@ -22,7 +22,11 @@ export function useLog(paramsInput?: LogParams) {
 
   addLog(sceneName, {
     id,
-    slot: context?.slots.default,
+    component: {
+      slot: component!.slots.default,
+      emit: component!.emit,
+      props: component!.props as { if: boolean },
+    },
     textItems: [],
     type: "log",
     style: params,
@@ -30,7 +34,7 @@ export function useLog(paramsInput?: LogParams) {
   });
 
   function getParams() {
-    const props = { ...context?.props };
+    const props = { ...component?.props };
     Object.keys(props).forEach(key => props[key] === undefined ? delete props[key] : {});
     return { ...paramsInput, ...props };
   }

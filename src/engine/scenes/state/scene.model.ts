@@ -1,4 +1,4 @@
-import { PropType, Slot } from "vue";
+import { PropType, Slot, ComputedRef } from "vue";
 import { ID } from "../../state/entity-store";
 
 export interface Scene {
@@ -10,11 +10,14 @@ export interface Scene {
 export interface SceneLog {
   id: ID;
   type: SceneLogType;
-  slot?: Slot;
+  component: {
+    slot?: Slot,
+    emit?: (e: "submit", v: string) => void,
+    props: { if: boolean },
+  },
   textItems?: SceneText[];
   style?: SceneStyle;
   margin?: SceneTextSpacing;
-  emit?: (e: "submit", v: string) => void;
   name?: string;
 }
 
@@ -64,6 +67,7 @@ export const textProps = {
   },
   bounce: Boolean,
   glitch: Boolean,
+  if: Boolean,
 }
 
 export const logProps = {
@@ -71,5 +75,9 @@ export const logProps = {
   margin: {
     type: Object as PropType<SceneTextSpacing>,
     default: undefined
+  },
+  if: {
+    type: Boolean,
+    default: undefined,
   },
 }
