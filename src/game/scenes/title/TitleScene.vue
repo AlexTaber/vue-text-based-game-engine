@@ -1,5 +1,5 @@
 <template>
-  <Scene name="title">
+  <Scene name="title" next-scene="intro">
     <SceneMessage>
       Welcome to Night of a Thousand Dans
     </SceneMessage>

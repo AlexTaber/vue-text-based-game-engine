@@ -1,7 +1,7 @@
 <template>
   <Scene name="intro" v-slot="{ state }">
     <SceneMessage>
-      Hello! <SceneText color="red" wavy>Michael!</SceneText>
+      Hello <SceneText color="primary" wavy>Michael!</SceneText>
     </SceneMessage>
 
     <SceneInputLabel>

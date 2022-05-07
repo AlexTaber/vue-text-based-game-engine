@@ -1,3 +1,1 @@
-<template>
-  SceneInput
-</template>
+<template></template>

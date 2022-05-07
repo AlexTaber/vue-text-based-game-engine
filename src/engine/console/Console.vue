@@ -1,10 +1,22 @@
 <template>
+  <slot />
+
   <div class="console">
     <div class="content">
-      <slot />
+      <div v-for="log in logs" :key="log.id" class="log">
+        <span v-for="item in log.textItems">
+          {{ item.content }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useConsoleStore } from './Console.store';
+
+const { logs } = useConsoleStore();
+</script>
 
 <style lang="scss">
 .console {
@@ -13,6 +25,8 @@
   background: black;
   color: white;
   padding: 40px;
+  font-family: 'VT323', monospace;
+  font-size: 2em;
 }
 
 .content {
@@ -20,6 +34,10 @@
   animation-name: textflicker;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.log {
+  margin-bottom: 6px;
 }
 
 @keyframes textflicker {

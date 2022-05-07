@@ -1,8 +1,8 @@
 <template>
   <Game class="game">
-    <IntroScene />
-
     <TitleScene />
+
+    <IntroScene />
   </Game>
 </template>
 

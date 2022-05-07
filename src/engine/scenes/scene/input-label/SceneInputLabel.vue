@@ -1,3 +1,1 @@
-<template>
-  SceneInputLabel
-</template>
+<template></template>

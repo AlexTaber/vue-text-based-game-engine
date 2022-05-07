@@ -1,3 +1,1 @@
-<template>
-  SceneSelectOption
-</template>
+<template></template>

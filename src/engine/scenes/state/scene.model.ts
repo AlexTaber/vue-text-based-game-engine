@@ -1,10 +1,20 @@
-import { ID } from "src/engine/state/entity-store";
+import { ID } from "../../state/entity-store";
 
 export interface Scene {
-  id: ID;
-  items: SceneItem[];
+  name: string;
+  logs: SceneLog[];
+  nextScene?: string;
 }
 
-export interface SceneItem {
+export interface SceneLog {
   id: ID;
+  textItems: SceneText[];
 }
+
+export interface SceneText {
+  id: ID;
+  content: string;
+  color?: SceneTextColor;
+}
+
+export type SceneTextColor = "default" | "primary" | "secondary";
