@@ -129,7 +129,7 @@ const getSize = (key: SceneTextSize | undefined) => {
 @keyframes noise-1 {
   $steps: 30;
   @for $i from 1 through $steps {
-    #{percentage($i*(1/$steps))} {
+    #{percentage($i*calc(1/$steps))} {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);
@@ -140,7 +140,7 @@ const getSize = (key: SceneTextSize | undefined) => {
 @keyframes noise-2 {
   $steps: 30;
   @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
+    #{percentage($i*calc(1/$steps))} {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);

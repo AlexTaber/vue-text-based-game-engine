@@ -1,5 +1,7 @@
 <template>
   <Engine class="game">
+    <Office />
+
     <Prologue />
   </Engine>
 </template>
@@ -7,6 +9,7 @@
 <script setup lang="ts">
 import Engine from "../engine/Engine.vue";
 import Prologue from "../prologue/Prologue.vue";
+import Office from "../office/Office.vue";
 </script>
 
 <style>
