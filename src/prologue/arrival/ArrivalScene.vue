@@ -1,5 +1,5 @@
 <template>
-  <Scene name="arrival" @finish="setActive('intro')">
+  <Scene name="arrival" @finish="setActive('engineeringTable')">
     <SceneLog color="primary" :margin="{ top: 'large', bottom: 'large' }">
       ...a short while later...
     </SceneLog>

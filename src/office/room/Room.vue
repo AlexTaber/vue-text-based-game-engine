@@ -12,6 +12,14 @@
       </SceneSelectOption>
 
       <slot name="actions" />
+
+      <SceneSelectOption value="coffee">
+        Coffee run
+      </SceneSelectOption>
+
+      <SceneSelectOption value="accusation">
+        Declare Whodunit!
+      </SceneSelectOption>
     </SceneSelect>
 
     <SceneInputLabel :if="action === 'go'">

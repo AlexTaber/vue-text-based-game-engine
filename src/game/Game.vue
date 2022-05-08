@@ -1,8 +1,8 @@
 <template>
   <Engine class="game">
-    <Office />
-
     <Prologue />
+
+    <Office />
   </Engine>
 </template>
 

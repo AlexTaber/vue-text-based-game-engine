@@ -5,7 +5,7 @@
     </SceneLog>
 
     <SceneLog color="secondary">
-      Wait, am I under investigation too? No one ever calls me Dan!
+      Wait, am I under investigation too? No one even calls me Dan!
     </SceneLog>
 
     <SceneLog color="secondary">
