@@ -1,4 +1,6 @@
 <template>
+  <MurderScene />
+
   <TitleScene />
 
   <CreateCharacterScene />
@@ -12,8 +14,6 @@
   <ElevatorScene />
 
   <AlarmScene />
-
-  <MurderScene />
 
   <SlackScene />
 

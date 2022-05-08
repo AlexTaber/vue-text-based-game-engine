@@ -3,7 +3,7 @@
 
   <div class="console">
     <div class="content">
-      <template v-for="log, index in logs" :key="log.id">
+      <div v-for="log, index in logs" :key="log.id" :class="{ active: index === logs.length - 1 }">
         <ConsoleLog v-if="log.type === 'log'" :log="log" />
 
         <ConsoleInput
@@ -19,7 +19,7 @@
           :active="index === logs.length - 1"
           @submit="onLogSubmit()"
         />
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -44,9 +44,9 @@ body {
   color: white;
   padding: 40px;
   font-family: 'VT323', monospace;
-  display: flex;
-  flex-direction: column-reverse;
   overflow-y: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
 }
 
 .content {
@@ -63,5 +63,10 @@ body {
   to {
     text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
   }
+}
+
+.active {
+  scroll-snap-align: end;
+  padding-bottom: 100px;
 }
 </style>
