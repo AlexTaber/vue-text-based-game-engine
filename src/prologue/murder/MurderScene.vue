@@ -1,5 +1,5 @@
 <template>
-  <Scene name="murder" @finish="setActive('intro')">
+  <Scene name="murder" @finish="setActive('slack')">
     <SceneLog>
       You turn to head towards your desk. Suddenly...
     </SceneLog>

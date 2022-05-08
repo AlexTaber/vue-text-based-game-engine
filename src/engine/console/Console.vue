@@ -40,10 +40,13 @@ body {
 
 .console {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   color: white;
   padding: 40px;
   font-family: 'VT323', monospace;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
 }
 
 .content {

@@ -6,7 +6,7 @@
 
     <SceneInput @submit="onSetName" />
 
-    <SceneLog :if="name === ''" link="nameLabel">
+    <SceneLog :if="playerName === ''" link="nameLabel">
       You... do have a name right?
     </SceneLog>
 
@@ -34,7 +34,7 @@
       You're <SceneText color="primary">{{ indefinite(selectedJob?.name ) }}</SceneText>, {{ selectedJob?.motto }}.
     </SceneLog>
 
-    <SceneLog v-for="skill in skills" :key="skill.name">
+    <SceneLog v-for="skill in skills" :key="skill.name" speed="instant">
       <SceneText color="primary">{{ skill.name }}:</SceneText> {{ selectedJob![skill.key] }}
     </SceneLog>
 
@@ -63,7 +63,7 @@ import indefinite from "indefinite";
 
 const { setActive: setNextScene } = useScenesStore();
 
-const { devMode } = useGameStore();
+const { devMode, playerName } = useGameStore();
 
 const jobs = [
   engineer,
@@ -79,12 +79,10 @@ const skills: { name: string, key: keyof Job }[] = [
   { name: "People Skills", key: "basePeopleSkills" },
 ];
 
-const name = ref("");
-
 const selectedJob = ref<Job | undefined>(undefined);
 
 const onSetName = (nameInput: string) => {
-  name.value = nameInput;
+  playerName.value = nameInput
 
   if (nameInput.toLowerCase() === "qa") {
     devMode.value = true;

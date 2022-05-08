@@ -1,6 +1,4 @@
 <template>
-  <MurderScene />
-
   <TitleScene />
 
   <CreateCharacterScene />
@@ -14,6 +12,12 @@
   <ElevatorScene />
 
   <AlarmScene />
+
+  <MurderScene />
+
+  <SlackScene />
+
+  <ArrivalScene />
 </template>
 
 <script setup lang="ts">
@@ -25,4 +29,6 @@ import DoorScene from './door/DoorScene.vue';
 import ElevatorScene from './elevator/ElevatorScene.vue';
 import AlarmScene from './alarm/AlarmScene.vue';
 import MurderScene from './murder/MurderScene.vue';
+import SlackScene from './slack/SlackScene.vue';
+import ArrivalScene from './arrival/ArrivalScene.vue';
 </script>
