@@ -3,7 +3,7 @@
 
   <div class="console">
     <div class="content">
-      <div v-for="log, index in logs" :key="log.id" :class="{ active: index === logs.length - 1 }">
+      <div v-for="log, index in logs" :key="log.id" :class="{ logEffects: !log.style?.glitch, active: index === logs.length - 1 }">
         <ConsoleLog v-if="log.type === 'log'" :log="log" />
 
         <ConsoleInput
@@ -47,9 +47,10 @@ body {
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   scroll-snap-type: y proximity;
+  filter: brightness(150%);
 }
 
-.content {
+.logEffects {
   animation-duration: 0.01s;
   animation-name: textflicker;
   animation-iteration-count: infinite;
