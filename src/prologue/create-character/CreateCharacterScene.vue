@@ -15,11 +15,11 @@
     </SceneLog>
 
     <template v-for="job in jobs" :key="job.name">
-      <SceneLog color="primary" :margin="{ bottom: 'none' }">
+      <SceneLog color="primary" :margin="{ bottom: 'none' }" speed="instant">
         {{ job.name }}
       </SceneLog>
 
-      <SceneLog>
+      <SceneLog speed="instant">
         Special Ability: <SceneText color="secondary">{{ job.special }}</SceneText>
       </SceneLog>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <Scene name="alarm" @finish="setActive('intro')">
+  <Scene name="alarm" @finish="setActive('murder')">
     <SceneLog>
       The alarm pad is beeping ominously. Its screen reads <SceneText color="danger" speed="slow">ARMED</SceneText>.
     </SceneLog>
@@ -15,7 +15,7 @@
     <SceneInput @submit="code = $event" />
 
     <SceneLog :if="code === 'apples'">
-      The alarm goes <SceneText color="secondary">DISARMED - READY TO ARM</SceneText>
+      The alarm goes <SceneText color="success">DISARMED - READY TO ARM</SceneText>
     </SceneLog>
 
     <SceneLog :if="code === 'apples'">

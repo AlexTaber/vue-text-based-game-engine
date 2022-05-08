@@ -60,7 +60,7 @@ export type SceneTextSpeed = "instant" | "fast" | "medium" | "slow";
 
 export type ScenePauseLength = "long" | "medium" | "short" | "none";
 
-export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";
+export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "success" | "danger" | "muted";
 
 export const textProps = {
   size: {

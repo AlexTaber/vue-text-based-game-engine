@@ -18,6 +18,8 @@ export function useConsoleStore() {
     activeId: activeSceneId,
   } = useScenesStore();
 
+  let lastItem: SceneText | undefined = undefined;
+
   watch(activeSceneId, onSetActive);
 
   const onLogSubmit = async () => {
@@ -66,11 +68,11 @@ export function useConsoleStore() {
   }
 
   async function setNextTextItem(log: SceneLog, item: SceneText) {
-    const activeItem = store.active.value?.textItems!.find(i => i.id === store.$state.activeItemId);
-    await delay(getPauseLength(activeItem));
+    await delay(getPauseLength(lastItem));
 
     store.active.value?.textItems!.push({ ...item, content: "", });
     store.patch({ activeItemId: item.id, characterIndex: -1 });
+    lastItem = item;
     onNextCharacter(log, item);
   }
 
@@ -107,7 +109,7 @@ export function useConsoleStore() {
 
   function getPauseLength(item: SceneText | undefined) {
     const map = {
-      long: 800,
+      long: 1000,
       medium: 400,
       short: 100,
       none: 0,
