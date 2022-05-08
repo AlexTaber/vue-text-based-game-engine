@@ -1,0 +1,39 @@
+<template>
+  <Scene name="intro">
+    <SceneLog>
+      It's a warmer day than expected in New York. You're overdressed for the day and are hot and sweaty from your train ride in from Brooklyn.
+    </SceneLog>
+
+    <SceneLog>
+      You arrive at the RippleMatch office bright and early.
+    </SceneLog>
+
+    <SceneInputLabel id="nameLabel">
+      What do you want to do?
+    </SceneInputLabel>
+
+    <SceneSelect @submit="setNextScene">
+      <SceneSelectOption value="door">
+        Enter
+      </SceneSelectOption>
+
+      <SceneSelectOption value="coffee">
+        Coffee
+      </SceneSelectOption>
+    </SceneSelect>
+  </Scene>
+</template>
+
+<script setup lang="ts">
+import Scene from '../../engine/scenes/scene/Scene.vue';
+import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
+import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLabel.vue';
+import { ref } from 'vue';
+import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
+import SceneSelect from '../../engine/scenes/scene/select/SceneSelect.vue';
+import { useScenesStore } from '../../engine/scenes/state/scenes.store';
+
+const { setActive: setNextScene } = useScenesStore();
+
+const name = ref("");
+</script>

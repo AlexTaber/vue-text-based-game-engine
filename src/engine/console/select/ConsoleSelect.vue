@@ -41,12 +41,14 @@ const optionIndex = ref(0);
 onUnmounted(() => unmounted = true);
 
 function onKeyPress(e: KeyboardEvent) {
-  if (e.code === "ArrowDown") {
-    optionIndex.value = Math.min((props.log.options?.length || 1) - 1, optionIndex.value + 1);
-  } else if (e.code === "ArrowUp") {
-    optionIndex.value = Math.max(0, optionIndex.value - 1);
-  } else if (e.code === "Enter") {
-    onSubmit(props.log.options?.[optionIndex.value].value || "");
+  if (props.active) {
+    if (e.code === "ArrowDown") {
+      optionIndex.value = Math.min((props.log.options?.length || 1) - 1, optionIndex.value + 1);
+    } else if (e.code === "ArrowUp") {
+      optionIndex.value = Math.max(0, optionIndex.value - 1);
+    } else if (e.code === "Enter") {
+      onSubmit(props.log.options?.[optionIndex.value].value || "");
+    }
   }
 }
 

@@ -46,14 +46,13 @@ export function useConsoleStore() {
     }
   }
 
-  async function setNextLog(log: SceneLog) {
+  function setNextLog(log: SceneLog) {
     store.add({ ...log, textItems: log.type === "log" ? [] : undefined });
     store.setActive(log.id);
 
     if (log.component.props.if === false) {
       onNextLog();
     } else if (log.type === "log") {
-      await delay(400);
       const textItemsFactory = useLogTextItemsFactory(log);
       log.textItems = textItemsFactory.get();
       onNextTextItem(log);
@@ -66,7 +65,10 @@ export function useConsoleStore() {
     nextItem ? setNextTextItem(log, nextItem) : onNextLog();
   }
 
-  function setNextTextItem(log: SceneLog, item: SceneText) {
+  async function setNextTextItem(log: SceneLog, item: SceneText) {
+    const activeItem = store.active.value?.textItems!.find(i => i.id === store.$state.activeItemId);
+    await delay(getPauseLength(activeItem));
+
     store.active.value?.textItems!.push({ ...item, content: "", });
     store.patch({ activeItemId: item.id, characterIndex: -1 });
     onNextCharacter(log, item);
@@ -79,21 +81,39 @@ export function useConsoleStore() {
 
   async function setNextChar(log: SceneLog, item: SceneText, nextChar: string) {
     const activeItem = store.active.value?.textItems!.find(i => i.id === store.$state.activeItemId);
-    activeItem!.content += nextChar;
-    store.characterIndex.value ++;
-    await delay(getTextSpeed(item));
-    onNextCharacter(log, item);
+    const speed = getTextSpeed(item);
+    if (speed === 0) {
+      activeItem!.content = item.content;
+      store.$state.characterIndex = item.content.length - 1;
+      onNextCharacter(log, item);
+    } else {
+      activeItem!.content += nextChar;
+      store.characterIndex.value ++;
+      await delay(speed);
+      onNextCharacter(log, item);
+    }
   }
 
   function getTextSpeed(item: SceneText) {
     const map = {
       instant: 0,
       fast: 10,
-      medium: 25,
-      slow: 100,
+      medium: 20,
+      slow: 300,
     }
 
     return map[item.style.speed || "medium"];
+  }
+
+  function getPauseLength(item: SceneText | undefined) {
+    const map = {
+      long: 800,
+      medium: 400,
+      short: 100,
+      none: 0,
+    }
+
+    return map[item?.style.pause || "medium"];
   }
 
   function endScene() {

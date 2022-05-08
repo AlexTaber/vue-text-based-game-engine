@@ -42,6 +42,7 @@ export interface SceneStyle {
   bounce?: boolean;
   glitch?: boolean;
   speed?: SceneTextSpeed;
+  pause?: ScenePauseLength;
 }
 
 export interface SceneTextSpacing {
@@ -55,7 +56,9 @@ export type SceneTextSize = "xLarge" |"large" | "small" | "xSmall";
 
 export type SceneTextSpacingSize = "large" | "small" | "none";
 
-export type SceneTextSpeed = "instant" | "fast" | "slow";
+export type SceneTextSpeed = "instant" | "fast" | "medium" | "slow";
+
+export type ScenePauseLength = "long" | "medium" | "short" | "none";
 
 export type SceneTextColor = "default" | "primary" | "secondary" | "info" | "danger";
 
@@ -70,6 +73,10 @@ export const textProps = {
   },
   speed: {
     type: String as PropType<SceneTextSpeed>,
+    default: undefined,
+  },
+  pause: {
+    type: String as PropType<ScenePauseLength>,
     default: undefined,
   },
   bounce: Boolean,

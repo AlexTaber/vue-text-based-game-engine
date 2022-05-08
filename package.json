@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/indefinite": "^2.3.1",
     "@types/lodash": "^4.14.182",
+    "indefinite": "^2.4.1",
     "jsan": "^3.1.14",
     "lodash": "^4.17.21",
     "uuid": "^8.3.2",
