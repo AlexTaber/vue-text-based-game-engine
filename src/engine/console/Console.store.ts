@@ -1,4 +1,4 @@
-import { watch } from "vue";
+import { nextTick, watch } from "vue";
 import type { SceneLog, SceneText } from "../scenes/state/scene.model";
 import { useScenesStore } from "../scenes/state/scenes.store";
 import { useEntityStore } from "../state/entity-store";
@@ -26,7 +26,9 @@ export function useConsoleStore() {
     onNextLog();
   };
 
-  function onSetActive() {
+  async function onSetActive() {
+    await nextTick();
+
     if (activeScene.value) {
       store.patch({ entities: [] });
       onNextLog();

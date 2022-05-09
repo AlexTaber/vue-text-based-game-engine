@@ -5,8 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref } from 'vue';
+import { nextTick, onMounted, ref } from 'vue';
 import { SceneLog } from '../../scenes/state/scene.model';
+import { useScenesStore } from '../../scenes/state/scenes.store';
 
 const props = defineProps<{
   log: SceneLog,
@@ -17,7 +18,9 @@ const emit = defineEmits<{
   (e: "submit", v: string): void;
 }>()
 
-let unmounted = false;
+const { activeId } = useScenesStore();
+
+const sceneName = activeId.value;
 
 const input = ref<HTMLElement | null>(null);
 
@@ -26,11 +29,10 @@ const value = ref("");
 const onSubmit = async (value: string) => {
   props.log.component.emit?.("submit", value);
   await nextTick();
-  if (!unmounted) emit("submit", value);
+  if (activeId.value === sceneName) emit("submit", value);
 }
 
 onMounted(() => focus());
-onUnmounted(() => unmounted = true);
 
 const focus = () => input.value?.focus();
 </script>

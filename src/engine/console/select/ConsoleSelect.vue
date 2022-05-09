@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted, ref } from 'vue';
 import { SceneLog } from '../../scenes/state/scene.model';
+import { useScenesStore } from '../../scenes/state/scenes.store';
 import { useTheme } from '../../theme';
 
 window.addEventListener("keydown", onKeyPress);
@@ -32,13 +33,13 @@ const emit = defineEmits<{
   (e: "submit", v: string | undefined): void;
 }>();
 
-let unmounted = false;
+const { activeId } = useScenesStore();
+
+const sceneName = activeId.value;
 
 const { getColor } = useTheme();
 
 const optionIndex = ref(0);
-
-onUnmounted(() => unmounted = true);
 
 function onKeyPress(e: KeyboardEvent) {
   if (props.active) {
@@ -55,7 +56,7 @@ function onKeyPress(e: KeyboardEvent) {
 async function onSubmit(value: string) {
   props.log.component.emit?.("submit", value);
   await nextTick();
-  if (!unmounted) emit("submit", value);
+  if (activeId.value === sceneName) emit("submit", value);
 }
 </script>
 

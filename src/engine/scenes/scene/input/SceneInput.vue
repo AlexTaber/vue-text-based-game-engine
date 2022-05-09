@@ -1,7 +1,7 @@
 <template></template>
 
 <script setup lang="ts">
-import { inject } from 'vue';
+import { inject, onUnmounted } from 'vue';
 import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 
@@ -15,14 +15,18 @@ const emit = defineEmits<{
 
 const sceneName = inject("sceneName") as string;
 
-const { addLog } = useScenesStore();
+const { addLog, removeLog } = useScenesStore();
+
+const id = generateUUID();
 
 addLog(sceneName, {
-  id: generateUUID(),
+  id,
   type: "input",
   component: {
     emit,
     props: props as { if: boolean },
   },
 });
+
+onUnmounted(() => removeLog(sceneName, id));
 </script>

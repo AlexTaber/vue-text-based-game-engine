@@ -1,4 +1,4 @@
-import { getCurrentInstance, inject, provide, ComponentInternalInstance, computed } from 'vue';
+import { getCurrentInstance, inject, provide, onBeforeUnmount } from 'vue';
 import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 import { SceneStyle, SceneTextSpacing } from '../../state/scene.model';
@@ -19,7 +19,7 @@ export function useLog(paramsInput?: LogParams) {
 
   provide("logId", id);
 
-  const { addLog } = useScenesStore();
+  const { addLog, removeLog } = useScenesStore();
 
   addLog(sceneName, {
     id,
@@ -34,6 +34,8 @@ export function useLog(paramsInput?: LogParams) {
     margin: params.margin,
     link: params.link,
   });
+
+  onBeforeUnmount(() => removeLog(sceneName, id));
 
   function getParams() {
     const props = { ...component?.props };

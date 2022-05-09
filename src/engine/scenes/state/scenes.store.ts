@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { ID, useEntityStore } from "../../state/entity-store";
-import { arrayAdd, arrayLast, arrayUpdateItemByProperty } from "../../state/utils";
+import { arrayAdd, arrayLast, arrayRemoveItemByProperty, arrayUpdateItemByProperty } from "../../state/utils";
 import { Scene, SceneLog, SceneSelectOption } from "./scene.model";
 
 const store = useEntityStore("Scenes", {
@@ -26,6 +26,11 @@ export function useScenesStore() {
     store.update(sceneName, { logs: arrayAdd(scene?.logs || [], log) });
   }
 
+  const removeLog = (sceneName: string, logId: ID) => {
+    const scene = store.findById(sceneName);
+    store.update(sceneName, { logs: arrayRemoveItemByProperty(scene?.logs || [], "id", logId) });
+  }
+
   const addLogOption = (sceneName: string, logId: ID, option: SceneSelectOption) => {
     const currentLogs = store.findById(sceneName)?.logs || [];
     const log = currentLogs.find(l => l.id === logId);
@@ -40,10 +45,12 @@ export function useScenesStore() {
     active: store.active,
     activeId,
     add: store.add,
+    remove: store.remove,
     findById: store.findById,
     setPreviousScene,
     setActive,
     addLog,
     addLogOption,
+    removeLog,
   }
 }

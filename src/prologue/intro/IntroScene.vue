@@ -32,8 +32,11 @@ import { ref } from 'vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import SceneSelect from '../../engine/scenes/scene/select/SceneSelect.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
+import { useGameStore } from '../../game/Game.store';
 
 const { setActive: setNextScene } = useScenesStore();
+
+const { playerName } = useGameStore();
 
 const name = ref("");
 </script>

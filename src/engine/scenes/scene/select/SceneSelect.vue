@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide } from 'vue';
+import { inject, onUnmounted, provide } from 'vue';
 import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 
@@ -20,7 +20,7 @@ const sceneName = inject("sceneName") as string;
 const id = generateUUID();
 provide("logId", id);
 
-const { addLog } = useScenesStore();
+const { addLog, removeLog } = useScenesStore();
 
 addLog(sceneName, {
   id,
@@ -30,4 +30,6 @@ addLog(sceneName, {
     props: props as { if: boolean },
   },
 });
+
+onUnmounted(() => removeLog(sceneName, id));
 </script>
