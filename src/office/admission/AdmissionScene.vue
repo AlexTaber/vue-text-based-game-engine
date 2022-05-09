@@ -1,5 +1,5 @@
 <template>
-  <Scene name="admission">
+  <Scene name="admission" @finish="setActive('credits')">
     <SceneLog color="secondary">
       OK FINE. YOU GOT ME.
     </SceneLog>
@@ -27,6 +27,8 @@
     <SceneInputLabel speed="instant">
       Press 'Enter' to Continue...
     </SceneInputLabel>
+
+    <SceneInput hide />
   </Scene>
 </template>
 
@@ -34,4 +36,8 @@
 import Scene from '../../engine/scenes/scene/Scene.vue';
 import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
 import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLabel.vue';
+import { useScenesStore } from '../../engine/scenes/state/scenes.store';
+import SceneInput from '../../engine/scenes/scene/input/SceneInput.vue';
+
+const { setActive } = useScenesStore();
 </script>

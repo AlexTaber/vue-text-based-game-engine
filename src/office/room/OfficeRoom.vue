@@ -2,7 +2,7 @@
   <Scene :name="name">
     <slot name="description" />
 
-    <SceneInputLabel>
+    <SceneInputLabel id="prompt">
       What do you want to do?
     </SceneInputLabel>
 
@@ -26,7 +26,9 @@
       </SceneSelectOption>
     </SceneSelect>
 
-    <SceneInputLabel :if="action === 'go'">
+    <CoffeeScene :condition="action === 'coffee'" link="prompt" />
+
+    <SceneInputLabel :condition="action === 'go'">
       Where do you want to go?
     </SceneInputLabel>
 
@@ -54,6 +56,7 @@ import { ref } from 'vue';
 import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
 import { useGameStore } from '../../game/Game.store';
+import CoffeeScene from '../../prologue/coffee/CoffeeScene.vue';
 
 const { setActive } = useScenesStore();
 
@@ -70,6 +73,6 @@ const action = ref("");
 const onActionSelect = (selectedAction: string) => {
   action.value = selectedAction;
 
-  if (selectedAction != "go") emit("selectAction", selectedAction);
+  if (selectedAction != "go" && selectedAction !== "coffee") emit("selectAction", selectedAction);
 }
 </script>

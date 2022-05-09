@@ -11,6 +11,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
+  (e: "init"): void;
   (e: "finish"): void;
 }>();
 

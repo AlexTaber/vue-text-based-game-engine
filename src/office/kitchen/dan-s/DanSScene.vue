@@ -20,7 +20,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 

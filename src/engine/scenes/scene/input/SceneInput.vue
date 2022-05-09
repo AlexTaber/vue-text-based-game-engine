@@ -6,9 +6,9 @@ import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 
 const props = withDefaults(defineProps<{
-  if?: boolean;
+  condition?: boolean;
   hide?: boolean;
-}>(), { if: undefined });
+}>(), { condition: undefined });
 
 const emit = defineEmits<{
   (e: "submit", v: string): void;

@@ -8,8 +8,8 @@ import { generateUUID } from '../../../utils/generate-uuid';
 import { useScenesStore } from '../../state/scenes.store';
 
 const props = withDefaults(defineProps<{
-  if?: boolean;
-}>(), { if: undefined });
+  condition?: boolean;
+}>(), { condition: undefined });
 
 const emit = defineEmits<{
   (e: "submit", v: string): void;

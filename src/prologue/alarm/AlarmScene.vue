@@ -14,23 +14,23 @@
 
     <SceneInput @submit="code = $event" />
 
-    <SceneLog :if="code === 'apples'">
+    <SceneLog :condition="code === 'apples'">
       The alarm goes <SceneText color="success">DISARMED - READY TO ARM</SceneText>
     </SceneLog>
 
-    <SceneLog :if="code === 'apples'">
+    <SceneLog :condition="code === 'apples'">
       I guess it... worked? Huh. Neat.
     </SceneLog>
 
-    <SceneLog :if="code !== 'apples'">
+    <SceneLog :condition="code !== 'apples'">
       You enter {{ code }}. That is not the code.
     </SceneLog>
 
-    <SceneLog :if="code !== 'apples'">
+    <SceneLog :condition="code !== 'apples'">
       The alarm begins emitting a high-pitched screech.
     </SceneLog>
 
-    <SceneLog :if="code !== 'apples'">
+    <SceneLog :condition="code !== 'apples'">
       Meh. It's probably fine.
     </SceneLog>
 
@@ -38,7 +38,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 

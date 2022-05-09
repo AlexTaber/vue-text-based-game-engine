@@ -22,7 +22,7 @@
       </SceneSelectOption>
     </SceneSelect>
 
-    <SceneLog :if="jiggleKey === 'no'" link="keyLabel">
+    <SceneLog :condition="jiggleKey === 'no'" link="keyLabel">
       You sit and contemplate your life choices.
     </SceneLog>
 
@@ -52,7 +52,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 

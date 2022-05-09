@@ -48,23 +48,29 @@
       </SceneSelectOption>
     </SceneSelect>
 
-    <SceneLog :if="helpChoice === 'no'">
+    <CoffeeScene :condition="helpChoice === 'coffee'" />
+
+    <SceneLog :condition="helpChoice === 'coffee'" link="helpLabel">
+      Properly caffeinated, you return to the body.
+    </SceneLog>
+
+    <SceneLog :condition="helpChoice === 'no'">
       You're not in the right headspace to help them right now.
     </SceneLog>
 
-    <SceneLog :if="helpChoice === 'no'" :margin="{ bottom: 'large' }">
+    <SceneLog :condition="helpChoice === 'no'" :margin="{ bottom: 'large' }">
       {{ getRandomBrowsingOption() }}
     </SceneLog>
 
-    <SceneLog :if="helpChoice === 'no'" speed="slow">
+    <SceneLog :condition="helpChoice === 'no'" speed="slow">
       ...
     </SceneLog>
 
-    <SceneLog :if="helpChoice === 'no'">
+    <SceneLog :condition="helpChoice === 'no'">
       You hear a moan coming from the phone booth.
     </SceneLog>
 
-    <SceneLog :if="helpChoice === 'no'" link="helpLabel">
+    <SceneLog :condition="helpChoice === 'no'" link="helpLabel">
       You should probably help them.
     </SceneLog>
 
@@ -88,7 +94,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 
@@ -103,6 +109,7 @@ import SceneSelect from '../../engine/scenes/scene/select/SceneSelect.vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import { ref } from 'vue';
 import { shuffle } from "lodash";
+import CoffeeScene from '../coffee/CoffeeScene.vue';
 
 const { setActive } = useScenesStore();
 
@@ -118,9 +125,5 @@ const getRandomBrowsingOption = () => shuffle(browsingOptions)[0];
 
 const onHelpChoice = (choice: string) => {
   helpChoice.value = choice;
-
-  if (choice === "coffee") {
-    setActive("coffee");
-  }
 }
 </script>

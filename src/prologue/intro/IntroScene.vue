@@ -12,7 +12,7 @@
       What do you want to do?
     </SceneInputLabel>
 
-    <SceneSelect @submit="setNextScene">
+    <SceneSelect @submit="onSelect">
       <SceneSelectOption value="door">
         Enter
       </SceneSelectOption>
@@ -21,6 +21,8 @@
         Coffee
       </SceneSelectOption>
     </SceneSelect>
+
+    <CoffeeScene :condition="actionValue === 'coffee'" link="nameLabel" />
   </Scene>
 </template>
 
@@ -28,15 +30,19 @@
 import Scene from '../../engine/scenes/scene/Scene.vue';
 import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
 import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLabel.vue';
-import { ref } from 'vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import SceneSelect from '../../engine/scenes/scene/select/SceneSelect.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
-import { useGameStore } from '../../game/Game.store';
+import { ref } from 'vue';
+import CoffeeScene from '../coffee/CoffeeScene.vue';
 
-const { setActive: setNextScene } = useScenesStore();
+const { setActive } = useScenesStore();
 
-const { playerName } = useGameStore();
+const actionValue = ref("");
 
-const name = ref("");
+const onSelect = (value: string) => {
+  actionValue.value = value;
+
+  if (actionValue.value !== 'coffee') setActive(value);
+}
 </script>

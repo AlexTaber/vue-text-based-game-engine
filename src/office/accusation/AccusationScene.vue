@@ -1,5 +1,5 @@
 <template>
-  <Scene name="accusation">
+  <Scene name="accusation" @finish="onFinish">
     <SceneInputLabel>
       Are you ready to declare the murderer?
     </SceneInputLabel>
@@ -56,7 +56,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 
@@ -69,8 +69,11 @@ import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSele
 import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
 import { ref } from 'vue';
 import SceneInput from '../../engine/scenes/scene/input/SceneInput.vue';
+import { useGameStore } from '../../game/Game.store';
 
 const { setPreviousScene, setActive } = useScenesStore();
+
+const { incorrectAccusation } = useGameStore();
 
 const accussed = ref("");
 
@@ -81,5 +84,10 @@ const onReadySelect = (ready: string) => {
 const onAccuse = (value: string) => {
   accussed.value = value;
   if (value === "Dan I.") setActive("admission");
+}
+
+const onFinish = () => {
+  incorrectAccusation.value = accussed.value;
+  setActive('credits');
 }
 </script>

@@ -4,7 +4,10 @@ import { ID } from "../../state/entity-store";
 export interface Scene {
   name: string;
   logs: SceneLog[];
-  emit: (e: "finish") => void;
+  emit: {
+    (e: "init"): void;
+    (e: "finish"): void;
+  },
 }
 
 export interface SceneLog {
@@ -81,7 +84,7 @@ export const textProps = {
   },
   bounce: Boolean,
   glitch: Boolean,
-  if: Boolean,
+  condition: Boolean,
 }
 
 export const logProps = {
@@ -98,7 +101,7 @@ export const logProps = {
     type: String,
     default: undefined,
   },
-  if: {
+  condition: {
     type: Boolean,
     default: undefined,
   },

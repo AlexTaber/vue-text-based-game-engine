@@ -33,6 +33,7 @@ export function useConsoleStore() {
     await nextTick();
 
     if (activeScene.value) {
+      activeScene.value.emit("init");
       store.patch({ entities: [] });
       onNextLog();
     }
@@ -46,7 +47,7 @@ export function useConsoleStore() {
   }
 
   function getNextLogIndex(logs: SceneLog[]) {
-    if (store.active.value?.link && store.active.value?.component.props.if !== false) {
+    if (store.active.value?.link && store.active.value?.component.props.condition !== false) {
       return logs.findIndex(l => l.id === store.active.value?.link);
     } else {
       return logs.findIndex(l => l.id === store.active.value?.id) + 1;
@@ -57,7 +58,7 @@ export function useConsoleStore() {
     store.add({ ...log, textItems: log.type === "log" ? [] : undefined });
     store.setActive(log.id);
 
-    if (log.component.props.if === false) {
+    if (log.component.props.condition === false) {
       onNextLog();
     } else if (log.type === "log") {
       const textItemsFactory = useLogTextItemsFactory(log);

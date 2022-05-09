@@ -1,5 +1,5 @@
 <template>
-  <Scene name="gunner" @finish="setPreviousScene">
+  <Scene name="gunner" @init="petGunner = true" @finish="setPreviousScene">
     <SceneLog>
       Gunner eyes you cautiously, as if trying to determine what kind of person you are.
     </SceneLog>
@@ -20,7 +20,7 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide />
   </Scene>
 </template>
 
@@ -35,6 +35,4 @@ import { useGameStore } from '../../game/Game.store';
 const { setPreviousScene } = useScenesStore();
 
 const { petGunner } = useGameStore();
-
-petGunner.value = true;
 </script>
