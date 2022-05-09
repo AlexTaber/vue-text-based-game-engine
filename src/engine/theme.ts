@@ -11,7 +11,7 @@ const store = useStore("Theme", {
     danger: "red",
     info: "yellow",
     success: "lime",
-    muted: "darkgray",
+    muted: "darkslategrey",
   } as Theme,
 });
 
