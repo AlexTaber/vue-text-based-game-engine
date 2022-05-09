@@ -5,6 +5,7 @@ import { useEntityStore } from "../state/entity-store";
 import type { ID } from "../state/entity-store";
 import { delay } from "../utils/delay";
 import { useLogTextItemsFactory } from "../scenes/scene/log/log-text-items.factory";
+import { useEngineStore } from "../Engine.store";
 
 const store = useEntityStore("Console", {
   entities: [] as SceneLog[],
@@ -17,6 +18,8 @@ export function useConsoleStore() {
     active: activeScene,
     activeId: activeSceneId,
   } = useScenesStore();
+
+  const { devMode } = useEngineStore();
 
   let lastItem: SceneText | undefined = undefined;
 
@@ -106,7 +109,8 @@ export function useConsoleStore() {
       slow: 300,
     }
 
-    return map[item.style.speed || "medium"];
+    const speed = devMode.value ? "instant" : item.style.speed;
+    return map[speed || "medium"];
   }
 
   function getPauseLength(item: SceneText | undefined) {
@@ -117,7 +121,8 @@ export function useConsoleStore() {
       none: 0,
     }
 
-    return map[item?.style.pause || "medium"];
+    const pause = devMode.value ? "none" : item?.style.pause;
+    return map[pause || "medium"];
   }
 
   function endScene() {

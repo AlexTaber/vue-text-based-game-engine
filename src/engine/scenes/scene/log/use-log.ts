@@ -26,7 +26,7 @@ export function useLog(paramsInput?: LogParams) {
     component: {
       slot: component!.slots.default,
       emit: component!.emit,
-      props: component!.props as { if: boolean },
+      props: component!.props,
     },
     textItems: [],
     type: "log",

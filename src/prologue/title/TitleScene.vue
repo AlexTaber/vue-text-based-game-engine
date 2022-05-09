@@ -1,5 +1,5 @@
 <template>
-  <Scene name="title" @finish="setActive('createCharacter')">
+  <Scene name="title">
     <SceneLog>
       Off By One Entertainment(TM) Presents
     </SceneLog>
@@ -26,7 +26,7 @@
       Press 'Enter' to Begin...
     </SceneInputLabel>
 
-    <SceneInput />
+    <SceneInput hide @submit="onContinue" />
   </Scene>
 </template>
 
@@ -37,6 +37,19 @@ import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLab
 import SceneInput from '../../engine/scenes/scene/input/SceneInput.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
 import SceneText from '../../engine/scenes/scene/text/SceneText.vue';
+import { useEngineStore } from '../../engine/Engine.store';
 
-const { setActive } = useScenesStore();
+const { setActive, active } = useScenesStore();
+
+const { devMode } = useEngineStore();
+
+const onContinue = (value: string) => {
+  if (value.toLowerCase() === "qa") devMode.value = true;
+
+  else if (value !== "") setActive(value);
+
+  if (active.value === undefined || active.value.name === "title") {
+    setActive('createCharacter');
+  }
+}
 </script>

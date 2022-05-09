@@ -4,7 +4,7 @@
       What is your name?
     </SceneInputLabel>
 
-    <SceneInput @submit="onSetName" />
+    <SceneInput @submit="playerName = $event" />
 
     <SceneLog :if="playerName === ''" link="nameLabel">
       You... do have a name right?
@@ -63,7 +63,7 @@ import indefinite from "indefinite";
 
 const { setActive: setNextScene } = useScenesStore();
 
-const { devMode, playerName } = useGameStore();
+const { playerName } = useGameStore();
 
 const jobs = [
   engineer,
@@ -80,14 +80,6 @@ const skills: { name: string, key: keyof Job }[] = [
 ];
 
 const selectedJob = ref<Job | undefined>(undefined);
-
-const onSetName = (nameInput: string) => {
-  playerName.value = nameInput
-
-  if (nameInput.toLowerCase() === "qa") {
-    devMode.value = true;
-  }
-};
 
 const onJobSelect = (name: string) => {
   selectedJob.value = jobs.find(j => j.name === name);

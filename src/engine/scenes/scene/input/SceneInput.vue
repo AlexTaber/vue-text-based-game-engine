@@ -7,6 +7,7 @@ import { useScenesStore } from '../../state/scenes.store';
 
 const props = withDefaults(defineProps<{
   if?: boolean;
+  hide?: boolean;
 }>(), { if: undefined });
 
 const emit = defineEmits<{
@@ -24,7 +25,7 @@ addLog(sceneName, {
   type: "input",
   component: {
     emit,
-    props: props as { if: boolean },
+    props,
   },
 });
 

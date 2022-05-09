@@ -27,7 +27,7 @@ addLog(sceneName, {
   type: "select",
   component: {
     emit,
-    props: props as { if: boolean },
+    props,
   },
 });
 

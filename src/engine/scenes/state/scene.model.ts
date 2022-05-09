@@ -13,7 +13,7 @@ export interface SceneLog {
   component: {
     slot?: Slot,
     emit?: (e: "submit", v: string) => void,
-    props: { if: boolean },
+    props: any,
   },
   textItems?: SceneText[];
   options?: SceneSelectOption[];

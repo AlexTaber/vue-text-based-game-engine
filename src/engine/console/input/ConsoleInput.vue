@@ -1,6 +1,6 @@
 <template>
   <form v-if="active" @submit.prevent="onSubmit(value)">
-    <input ref="input" class="input" type="text" v-model="value" @blur="focus" />
+    <input ref="input" :class="{ input: true, hide: log.component.props.hide }" type="text" v-model="value" @blur="focus" />
   </form>
 </template>
 
@@ -46,6 +46,10 @@ const focus = () => input.value?.focus();
 
   &:focus {
     outline: none;
+  }
+
+  &.hide {
+    opacity: 0;
   }
 }
 </style>
