@@ -5,8 +5,8 @@
       :key="option.id"
       class="option"
     >
-      <span :style="{ color: getColor('primary') }">
-        <template v-if="optionIndex === index">> </template> {{ index + 1 }})
+      <span v-if="optionIndex === index" :style="{ color: getColor('primary') }">
+        >
       </span>
 
       {{ option.content }}

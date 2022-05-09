@@ -58,7 +58,7 @@ export interface SceneTextSpacing {
   right?: SceneTextSpacingSize;
 }
 
-export type SceneTextSize = "xLarge" |"large" | "small" | "xSmall";
+export type SceneTextSize = "title" | "xLarge" |"large" | "small" | "xSmall";
 
 export type SceneTextSpacingSize = "large" | "small" | "none";
 

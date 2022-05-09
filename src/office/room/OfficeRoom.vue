@@ -21,7 +21,7 @@
         Give Gunner pets
       </SceneSelectOption>
 
-      <SceneSelectOption value="accusation">
+      <SceneSelectOption v-if="!solvedMurder" value="accusation">
         Declare Whodunit!
       </SceneSelectOption>
     </SceneSelect>
@@ -60,7 +60,7 @@ import CoffeeScene from '../../prologue/coffee/CoffeeScene.vue';
 
 const { setActive } = useScenesStore();
 
-const { petGunner } = useGameStore();
+const { petGunner, solvedMurder } = useGameStore();
 
 defineProps<{ name: string }>();
 

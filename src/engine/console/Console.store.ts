@@ -57,11 +57,12 @@ export function useConsoleStore() {
   }
 
   function setNextLog(log: SceneLog) {
-    log.component.emit?.("init");
+    const logIsVisible = log.component.props.condition !== false;
+    if (logIsVisible) log.component.emit?.("init");
     store.add({ ...log, textItems: log.type === "log" ? [] : undefined });
     store.setActive(log.id);
 
-    if (log.component.props.condition === false) {
+    if (!logIsVisible) {
       onNextLog();
     } else if (log.type === "log") {
       const textItemsFactory = useLogTextItemsFactory(log);

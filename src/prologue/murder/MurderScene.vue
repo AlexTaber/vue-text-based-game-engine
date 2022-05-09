@@ -4,7 +4,7 @@
       You turn to head towards your desk. Suddenly...
     </SceneLog>
 
-    <SceneLog size="large">
+    <SceneLog size="xLarge">
       <SceneText pause="medium" speed="instant">...is </SceneText>
 
       <SceneText pause="medium" speed="instant">that </SceneText>

@@ -1,7 +1,7 @@
 <template>
   <Scene name="incorrectAccusation" @finish="setActive('arrival')">
     <SceneLog>
-      WEll, well, if it isn't our hero detective!
+      Well, well, if it isn't our hero detective!
     </SceneLog>
 
     <SceneLog>
@@ -36,7 +36,11 @@
 
     <SceneInput :condition="secondThoughtsValue === 'no'" hide />
 
-    <SceneLog @init="resetLogs" :condition="secondThoughtsValue === 'no'" size="large" :margin="{ bottom: 'large' }">
+    <SceneLog @init="resetLogs" :condition="secondThoughtsValue === 'no'">
+      Thanks for playing
+    </SceneLog>
+
+    <SceneLog :condition="secondThoughtsValue === 'no'" size="xLarge" :margin="{ bottom: 'large' }">
       Night of a THOUSA...
     </SceneLog>
 

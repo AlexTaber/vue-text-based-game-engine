@@ -5,13 +5,7 @@ const store = useStore("Game", {
   petGunner: false,
   solvedMurder: false,
   incorrectAccusation: undefined as string | undefined,
+  danIInteractions: 0,
 });
 
-export function useGameStore() {
-  return {
-    playerName: store.playerName,
-    petGunner: store.petGunner,
-    solvedMurder: store.solvedMurder,
-    incorrectAccusation: store.incorrectAccusation,
-  };
-}
+export const useGameStore = () => store;

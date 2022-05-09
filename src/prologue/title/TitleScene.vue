@@ -4,7 +4,7 @@
       Off By One Entertainment(TM) Presents
     </SceneLog>
 
-    <SceneLog size="large">
+    <SceneLog size="xLarge">
       <SceneText speed="instant" pause="medium">Night </SceneText>
 
       <SceneText speed="instant" pause="medium">of </SceneText>
@@ -13,7 +13,7 @@
     </SceneLog>
 
     <SceneLog
-      size="xLarge"
+      size="title"
       :glitch="true"
       :margin="{ bottom: 'large' }"
       speed="instant"

@@ -1,6 +1,10 @@
 <template>
   <Scene name="credits" @finish="setActive(solvedMurder ? 'celebration' : 'incorrectAccusation')">
-    <SceneLog :glitch="true" size="large" :margin="{ bottom: 'large' }">
+    <SceneLog>
+      Thanks for playing
+    </SceneLog>
+
+    <SceneLog :glitch="true" size="xLarge" :margin="{ bottom: 'large' }">
       Night of a THOUSAND DANS
     </SceneLog>
 

@@ -52,8 +52,9 @@ const getSize = (key: SceneTextSize | undefined) => {
     xSmall: "0.5em",
     small: "0.7em",
     medium: "1em",
-    large: "2em",
-    xLarge: "5em",
+    large: "1.5em",
+    xLarge: "2em",
+    title: "5em",
   };
 
   return key ? map[key || "medium"] : undefined;
