@@ -39,7 +39,7 @@ import { useGameStore } from '../game/Game.store';
 
 const credits = [
   { name: "Michael Anderson", job: "Programmer, Writer, Fishing Expert" },
-  { name: "Alex Taber", job: "Programmer" },
+  { name: "Alex Taber", job: "Programmer, Writer" },
   { name: "Ken Simeon", job: "Writer" },
   { name: "Bobby Hancock", job: "Writer" },
 ]

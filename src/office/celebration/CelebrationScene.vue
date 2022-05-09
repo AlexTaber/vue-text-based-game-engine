@@ -8,6 +8,10 @@
       You solved the case!
     </SceneLog>
 
+    <SceneLog size="small" color="secondary">
+      We're still getting our next round of funding, right?
+    </SceneLog>
+
     <SceneLog color="secondary">
       Nice one!
     </SceneLog>
@@ -18,10 +22,6 @@
 
     <SceneLog color="secondary">
       Way to go!
-    </SceneLog>
-
-    <SceneLog color="secondary">
-      I’m definitely taking a mental health day…
     </SceneLog>
 
     <SceneLog color="primary" :margin="{ top: 'large', bottom: 'large' }">
