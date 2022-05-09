@@ -73,7 +73,7 @@ import { useGameStore } from '../../game/Game.store';
 
 const { setPreviousScene, setActive } = useScenesStore();
 
-const { incorrectAccusation } = useGameStore();
+const { solvedMurder, incorrectAccusation } = useGameStore();
 
 const accussed = ref("");
 
@@ -83,7 +83,11 @@ const onReadySelect = (ready: string) => {
 
 const onAccuse = (value: string) => {
   accussed.value = value;
-  if (value === "Dan I.") setActive("admission");
+
+  if (value === "Dan I.") {
+    solvedMurder.value = true;
+    setActive("admission");
+  }
 }
 
 const onFinish = () => {

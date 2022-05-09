@@ -1,23 +1,43 @@
 <template>
-  <Scene name="admission" @finish="setActive('credits')">
-    <SceneLog color="secondary">
-      OK FINE. YOU GOT ME.
+  <Scene name="celebration" @finish="setActive('engineeringTable')">
+    <SceneLog>
+      Rapturous applause explodes from the office!
     </SceneLog>
 
     <SceneLog color="secondary">
-      I DID IT! AND YOU KNOW WHY?
+      You solved the case!
     </SceneLog>
 
     <SceneLog color="secondary">
-      THAT PUNK STOLE MY ART ASSETS FOR SOME GAME COMPANY THAT HE OWNS!
+      Nice one!
+    </SceneLog>
+
+    <SceneLog size="small" color="secondary">
+      Is this going to hold up release?
     </SceneLog>
 
     <SceneLog color="secondary">
-      Why does this keep happening to me?!
+      Way to go!
     </SceneLog>
 
     <SceneLog color="secondary">
-      I regret nothing, he deserved it.
+      I’m definitely taking a mental health day…
+    </SceneLog>
+
+    <SceneLog color="primary" :margin="{ top: 'large', bottom: 'large' }">
+      …later that day…
+    </SceneLog>
+
+    <SceneLog>
+      Despite the lingering smell of the dead body, the mood remains jubilant.
+    </SceneLog>
+
+    <SceneLog>
+      More folks have trickled in throughout the day, keen to get a firsthand account of the morning’s excitement.
+    </SceneLog>
+
+    <SceneLog>
+      Time to get back to work!
     </SceneLog>
 
     <SceneInputLabel speed="instant">

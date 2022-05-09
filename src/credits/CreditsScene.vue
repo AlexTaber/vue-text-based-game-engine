@@ -1,5 +1,5 @@
 <template>
-  <Scene name="credits" @finish="setActive('createCharacter')">
+  <Scene name="credits" @finish="setActive(solvedMurder ? 'celebration' : 'incorrectAccusation')">
     <SceneLog :glitch="true" size="large" :margin="{ bottom: 'large' }">
       Night of a THOUSAND DANS
     </SceneLog>
@@ -17,7 +17,7 @@
     </SceneLog>
 
     <SceneInputLabel speed="instant" :margin="{ top: 'large' }">
-      Press 'Enter' to Play Again!
+      Wait.. is there more? Press 'Enter' to Continue...
     </SceneInputLabel>
 
     <SceneInput />
@@ -31,6 +31,7 @@ import SceneLog from '../engine/scenes/scene/log/SceneLog.vue';
 import SceneInputLabel from '../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import SceneInput from '../engine/scenes/scene/input/SceneInput.vue';
 import SceneText from '../engine/scenes/scene/text/SceneText.vue';
+import { useGameStore } from '../game/Game.store';
 
 const credits = [
   { name: "Michael Anderson", job: "Programmer, Writer, Fishing Expert" },
@@ -40,4 +41,6 @@ const credits = [
 ]
 
 const { setActive } = useScenesStore();
+
+const { solvedMurder } = useGameStore();
 </script>
