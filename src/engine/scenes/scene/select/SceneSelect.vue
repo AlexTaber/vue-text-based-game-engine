@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<{
 }>(), { condition: undefined });
 
 const emit = defineEmits<{
+  (e: "init"): void;
   (e: "submit", v: string): void;
 }>();
 

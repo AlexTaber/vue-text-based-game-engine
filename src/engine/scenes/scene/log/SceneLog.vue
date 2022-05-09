@@ -6,5 +6,9 @@ import { useLog } from '../log/use-log';
 
 defineProps(logProps);
 
+defineEmits<{
+  (e: "init"): void,
+}>();
+
 useLog();
 </script>

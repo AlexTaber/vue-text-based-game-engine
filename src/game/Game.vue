@@ -5,8 +5,6 @@
     <Office />
 
     <CreditsScene />
-
-    <FakeCreditsScene />
   </Engine>
 </template>
 
@@ -15,7 +13,6 @@ import Engine from "../engine/Engine.vue";
 import Prologue from "../prologue/Prologue.vue";
 import Office from "../office/Office.vue";
 import CreditsScene from "../credits/CreditsScene.vue";
-import FakeCreditsScene from "../credits/FakeCreditsScene.vue";
 </script>
 
 <style>

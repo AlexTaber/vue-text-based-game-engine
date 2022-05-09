@@ -15,7 +15,10 @@ export interface SceneLog {
   type: SceneLogType;
   component: {
     slot?: Slot,
-    emit?: (e: "submit", v: string) => void,
+    emit?: {
+      (e: "init"): void;
+      (e: "submit", v: string): void;
+    }
     props: any,
   },
   textItems?: SceneText[];

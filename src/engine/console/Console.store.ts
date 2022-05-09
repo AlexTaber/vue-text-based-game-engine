@@ -13,6 +13,8 @@ const store = useEntityStore("Console", {
   characterIndex: -1,
 });
 
+export const resetLogs = () => store.patch({ entities: [] });
+
 export function useConsoleStore() {
   const {
     active: activeScene,
@@ -34,7 +36,7 @@ export function useConsoleStore() {
 
     if (activeScene.value) {
       activeScene.value.emit("init");
-      store.patch({ entities: [] });
+      resetLogs();
       onNextLog();
     }
   }
@@ -55,6 +57,7 @@ export function useConsoleStore() {
   }
 
   function setNextLog(log: SceneLog) {
+    log.component.emit?.("init");
     store.add({ ...log, textItems: log.type === "log" ? [] : undefined });
     store.setActive(log.id);
 

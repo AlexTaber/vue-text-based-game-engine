@@ -34,7 +34,31 @@
       Press 'Enter' to Continue...
     </SceneInputLabel>
 
-    <SceneInput :condition="secondThoughtsValue === 'no'" hide @submit="setActive('fakeCredits')" />
+    <SceneInput :condition="secondThoughtsValue === 'no'" hide />
+
+    <SceneLog @init="resetLogs" :condition="secondThoughtsValue === 'no'" size="large" :margin="{ bottom: 'large' }">
+      Night of a THOUSA...
+    </SceneLog>
+
+    <SceneSelect :condition="secondThoughtsValue === 'no'">
+      <SceneSelectOption value="wait">
+        Wait!
+      </SceneSelectOption>
+    </SceneSelect>
+
+    <SceneLog :condition="secondThoughtsValue === 'no'">
+      What?!
+    </SceneLog>
+
+    <SceneSelect :condition="secondThoughtsValue === 'no'">
+      <SceneSelectOption value="wait">
+        OK fine, maybe I'm not sure it was {{ incorrectAccusation }}
+      </SceneSelectOption>
+    </SceneSelect>
+
+    <SceneLog :condition="secondThoughtsValue === 'no'" color="danger" size="large" :bounce="true">
+      REALLY?!
+    </SceneLog>
 
     <SceneLog>
       Oh dear. How dreadful. Poor {{ incorrectAccusation }}, fired for no good reason.
@@ -75,6 +99,7 @@ import SceneSelect from '../../engine/scenes/scene/select/SceneSelect.vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import SceneInput from '../../engine/scenes/scene/input/SceneInput.vue';
 import SceneText from '../../engine/scenes/scene/text/SceneText.vue';
+import { resetLogs } from '../../engine/console/Console.store';
 
 const { setActive } = useScenesStore();
 
