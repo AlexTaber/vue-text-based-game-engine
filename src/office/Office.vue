@@ -8,6 +8,8 @@
   <AccusationScene />
 
   <AdmissionScene />
+
+  <GunnerScene />
 </template>
 
 <script setup lang="ts">
@@ -16,4 +18,5 @@ import Bathroom from './bathroom/Bathroom.vue';
 import EngineeringTable from './engineering-table/EngineeringTable.vue';
 import AccusationScene from './accusation/AccusationScene.vue';
 import AdmissionScene from './admission/AdmissionScene.vue';
+import GunnerScene from './gunner/GunnerScene.vue';
 </script>

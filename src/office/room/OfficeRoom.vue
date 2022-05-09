@@ -17,6 +17,10 @@
         Coffee run
       </SceneSelectOption>
 
+      <SceneSelectOption v-if="!petGunner" value="gunner">
+        Give Gunner pets
+      </SceneSelectOption>
+
       <SceneSelectOption value="accusation">
         Declare Whodunit!
       </SceneSelectOption>
@@ -49,8 +53,11 @@ import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSele
 import { ref } from 'vue';
 import SceneInputLabel from '../../engine/scenes/scene/input-label/SceneInputLabel.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
+import { useGameStore } from '../../game/Game.store';
 
 const { setActive } = useScenesStore();
+
+const { petGunner } = useGameStore();
 
 defineProps<{ name: string }>();
 

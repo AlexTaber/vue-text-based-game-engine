@@ -5,11 +5,13 @@ const engineStore = useEngineStore();
 
 const store = useStore("Game", {
   playerName: "Bob",
+  petGunner: false,
 });
 
 export function useGameStore() {
   return {
     devMode: engineStore.devMode,
     playerName: store.playerName,
+    petGunner: store.petGunner,
   };
 }

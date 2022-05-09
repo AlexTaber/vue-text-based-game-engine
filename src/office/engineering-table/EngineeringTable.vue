@@ -1,5 +1,5 @@
 <template>
-  <Room name="engineeringTable" @select-action="setActive">
+  <OfficeRoom name="engineeringTable" @select-action="setActive">
     <template #description>
       <SceneLog>
         You walk over to the Engineering Table.
@@ -19,7 +19,7 @@
         Talk to Dee
       </SceneSelectOption>
     </template>
-  </Room>
+  </OfficeRoom>
 
   <JoyScene />
 
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import Room from '../room/Room.vue';
+import OfficeRoom from '../room/OfficeRoom.vue';
 import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';

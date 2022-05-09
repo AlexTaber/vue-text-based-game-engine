@@ -1,5 +1,5 @@
 <template>
-  <Room name="kitchen" @select-action="setActive">
+  <OfficeRoom name="kitchen" @select-action="setActive">
     <template #description>
       <SceneLog>
         You walk into the kitchen.
@@ -23,7 +23,7 @@
         Talk to Dan I.
       </SceneSelectOption>
     </template>
-  </Room>
+  </OfficeRoom>
 
   <DanSScene />
 
@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import Room from '../room/Room.vue';
+import OfficeRoom from '../room/OfficeRoom.vue';
 import SceneLog from '../../engine/scenes/scene/log/SceneLog.vue';
 import SceneSelectOption from '../../engine/scenes/scene/select/option/SceneSelectOption.vue';
 import { useScenesStore } from '../../engine/scenes/state/scenes.store';
