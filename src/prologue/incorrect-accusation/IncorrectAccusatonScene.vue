@@ -1,7 +1,7 @@
 <template>
   <Scene name="incorrectAccusation" @finish="setActive('arrival')">
     <SceneLog>
-      Well, well, if it isn't our hero detective!
+      WEll, well, if it isn't our hero detective!
     </SceneLog>
 
     <SceneLog>
